@@ -16,6 +16,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>12.8.1.jre11</version>
+        </dependency>
+        <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>11.0.2</version>
@@ -61,7 +66,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                dk.easv.moviecollection/dk.easv.moviecollection.HelloApplication
+                                dk.easv.moviecollection/dk.easv.moviecollection.App
                             </mainClass>
                         </configuration>
                     </execution>
