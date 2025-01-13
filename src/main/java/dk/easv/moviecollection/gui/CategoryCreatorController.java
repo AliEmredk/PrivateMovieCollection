@@ -72,7 +72,6 @@ public class CategoryCreatorController implements Initializable {
         File selectedFile = fileChooser.showOpenDialog(stage);
 
         imgViewEditIcon.setImage(new Image(selectedFile.toURI().toString()));
-
     }
 
 
