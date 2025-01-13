@@ -9,8 +9,5 @@
         <module name="MovieCollection" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="MovieCollection" target="0" />
-    </bytecodeTargetLevel>
   </component>
 </project>

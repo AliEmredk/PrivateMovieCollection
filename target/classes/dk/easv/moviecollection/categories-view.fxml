@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ScrollPane prefHeight="491.0" prefWidth="720.0">
+         <content>
+            <FlowPane fx:id="flowPaneCategories" prefHeight="27.0" prefWidth="717.0" />
+         </content>
+      </ScrollPane>
+      <Button mnemonicParsing="false" onAction="#showCategoryCreator" text="Add new category" AnchorPane.leftAnchor="560.0" AnchorPane.topAnchor="430.0" />
+   </children>
+</AnchorPane>
