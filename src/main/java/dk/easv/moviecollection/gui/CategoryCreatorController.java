@@ -26,31 +26,14 @@ public class CategoryCreatorController implements Initializable {
     private TextField txtFieldCategoryName;
     @FXML
     private ImageView imgViewEditIcon;
-    @FXML
-    private Button pathChooseBtn;
 
-
-    public void onPathChooseBtnAct(ActionEvent actionEvent) {
-
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select an Image");
-        fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter("Image Filter", "*.jpg", "*.jpeg")
-        );
-
-        Stage stage = (Stage) pathChooseBtn.getScene().getWindow();
-
-        File selectedFile = fileChooser.showOpenDialog(stage);
-
-        if (selectedFile != null) {
-            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
-        } else {
-            System.out.println("No file selected");
-        }
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Set a default image
+        Image defaultImage = new Image(getClass().getResource("/images/defaultMoviePicture.png").toExternalForm());
+        imgViewEditIcon.setImage(defaultImage);
+
         imgViewEditIcon.setOnMouseClicked(event -> {
             try {
                 selectFile();
