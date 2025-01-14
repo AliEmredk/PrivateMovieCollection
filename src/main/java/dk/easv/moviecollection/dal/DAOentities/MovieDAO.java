@@ -43,7 +43,7 @@ public class MovieDAO extends CrudDAO<Movie>
 
   public List<Movie> getMoviesForCategory(Category category) throws SQLException
   {
-    String query = "SELECT movies.id, movies.name, movies.director, movies.release_date, movies.description, movies.rating FROM categoryMovie cm INNER JOIN movies ON cm.movie_id = movies.id WHERE cm.category_id = ?;";
+    String query = "SELECT movies.id, movies.title, movies.director, movies.release_date, movies.description, movies.rating FROM categoryMovie cm INNER JOIN movies ON cm.movie_id = movies.id WHERE cm.category_id = ?;";
     return this.select(query, new Object[]{category.getId()}, rowMapper);
   }
 }

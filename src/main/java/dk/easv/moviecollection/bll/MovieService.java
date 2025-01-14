@@ -5,6 +5,7 @@ import dk.easv.moviecollection.be.Movie;
 import dk.easv.moviecollection.dal.DAOentities.MovieDAO;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieService
@@ -21,7 +22,7 @@ public class MovieService
     }catch (SQLException e){
       e.printStackTrace();
     }
-    return null;
+    return new ArrayList<>();
   }
 
   public List<Movie> getAllMoviesForCategory(Category category){
@@ -30,6 +31,6 @@ public class MovieService
     }catch (SQLException e){
       e.printStackTrace();
     }
-    return null;
+    return new ArrayList<>();
   }
 }
