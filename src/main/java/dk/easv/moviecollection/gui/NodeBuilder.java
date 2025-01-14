@@ -18,4 +18,5 @@ public class NodeBuilder {
         container.getChildren().addAll(imageContainer, movieTitle);
         return container;
     }
+    
 }
