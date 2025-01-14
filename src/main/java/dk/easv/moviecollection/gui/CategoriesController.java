@@ -56,11 +56,31 @@ public class CategoriesController implements Initializable
     Category category2 = new Category("Action");
     Category category3 = new Category("Comedy");
     Category category4 = new Category("Drama");
+    Category category5 = new Category("Fantasy");
+    Category category6 = new Category("Music");
+    Category category7 = new Category("Romance");
+    Category category8 = new Category("Science");
+    Category category9 = new Category("Action");
+    Category category10 = new Category("Action");
+    Category category11 = new Category("Action");
+    Category category12 = new Category("Action");
+    Category category13 = new Category("Action");
+    Category category14 = new Category("Action");
     List<Category> list = new ArrayList<>();
     list.add(category);
     list.add(category2);
     list.add(category3);
     list.add(category4);
+    list.add(category5);
+    list.add(category6);
+    list.add(category7);
+    list.add(category8);
+    list.add(category9);
+    list.add(category10);
+    list.add(category11);
+    list.add(category12);
+    list.add(category13);
+    list.add(category14);
     list.forEach(category1 -> flowPaneCategories.getChildren().add(nodeBuilder.categoryToVBox(category1)));
   }
 }

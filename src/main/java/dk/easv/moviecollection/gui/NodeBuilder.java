@@ -8,14 +8,19 @@ import javafx.scene.layout.VBox;
 
 public class NodeBuilder {
 
-    private final static String DEFAULT_CATEGORY_PICTURE = "src/main/resources/images/defaultMoviePicture.png";
+    private final static String DEFAULT_CATEGORY_PICTURE = "/images/defaultMoviePicture.png";
 
     public VBox categoryToVBox(Category category) {
         VBox container = new VBox();
         Image defaultImage = new Image(DEFAULT_CATEGORY_PICTURE);
         ImageView imageContainer = new ImageView(defaultImage);
+        imageContainer.setFitHeight(160);
+        imageContainer.setFitWidth(160);
         Label movieTitle = new Label(category.getName());
         container.getChildren().addAll(imageContainer, movieTitle);
+
+        container.getStyleClass().add("category-container");
+        imageContainer.getStyleClass().add("image-container");
         return container;
     }
     
