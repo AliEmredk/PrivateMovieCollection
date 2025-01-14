@@ -2,7 +2,6 @@ package dk.easv.moviecollection.gui;
 
 import dk.easv.moviecollection.App;
 import dk.easv.moviecollection.be.Category;
-import dk.easv.moviecollection.dal.QueryBuilder;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
