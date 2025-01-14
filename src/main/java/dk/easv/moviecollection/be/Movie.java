@@ -10,6 +10,15 @@ public class Movie {
     private String description;
     private int rating;
 
+    public Movie(){
+        this.id = 0;
+        this.title = null;
+        this.releaseDate = null;
+        this.director = null;
+        this.description = null;
+        this.rating = 0;
+    }
+
     public Movie(int id, String title, Date releaseDate, String director, String description, int rating) {
         this.id = id;
         this.title = title;
@@ -54,5 +63,35 @@ public class Movie {
     public String getDirector()
     {
         return director;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+
+    public void setTitle(String title)
+    {
+        this.title = title;
+    }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+
+    public void setDirector(String director)
+    {
+        this.director = director;
+    }
+
+    public void setRating(int rating)
+    {
+        this.rating = rating;
+    }
+
+    public void setReleaseDate(Date releaseDate)
+    {
+        this.releaseDate = releaseDate;
     }
 }

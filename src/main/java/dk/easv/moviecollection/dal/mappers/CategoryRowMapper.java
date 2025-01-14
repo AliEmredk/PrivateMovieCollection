@@ -9,6 +9,9 @@ public class CategoryRowMapper implements IRowMapper<Category>
 {
   @Override public Category mapRow(ResultSet resultSet) throws SQLException
   {
-    return null;
+    Category category = new Category();
+    category.setId(resultSet.getInt("id"));
+    category.setName(resultSet.getString("name"));
+    return category;
   }
 }
