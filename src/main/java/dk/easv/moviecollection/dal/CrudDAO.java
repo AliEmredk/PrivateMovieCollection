@@ -8,12 +8,10 @@ import java.util.List;
 
 public class CrudDAO <T>
 {
-  private final Class<T> entityClass;
   private final DBConnection db;
 
-  public CrudDAO(Class<T> entityClass)
+  public CrudDAO()
   {
-    this.entityClass = entityClass;
     db = new DBConnection();
   }
 
@@ -35,7 +33,7 @@ public class CrudDAO <T>
     }
   }
 
-  protected T insertReturn(String insertQuery, String returnQuery, Object[] params, IRowMapper<T> rowMapper) throws SQLException{
+  protected T insertReturn(String insertQuery, Object[] params, IRowMapper<T> rowMapper, String returnQuery) throws SQLException{
     Connection connection = db.getConnection();
     T result = null;
     connection.setAutoCommit(false);
