@@ -24,6 +24,7 @@ public class DataModel {
     public void loadMoviesByCategory(Category category) throws SQLException {
         movies.setAll(movieService.getAllMoviesForCategory(category));
     }
+    
     public ObservableList<Category> getCategories() {
         return categories;
     }

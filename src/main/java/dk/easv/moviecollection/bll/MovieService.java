@@ -11,18 +11,19 @@ import java.util.List;
 public class MovieService
 {
   private final MovieDAO movieDAO;
+  private static List<Movie> movies;
 
   public MovieService(){
     this.movieDAO = new MovieDAO();
+    movies = new ArrayList<>();
+  }
+
+  public void loadMovies() throws SQLException {
+    movies = movieDAO.getAll();
   }
 
   public List<Movie> getAllMovies(){
-    try{
-      return movieDAO.getAll();
-    }catch (SQLException e){
-      e.printStackTrace();
-    }
-    return new ArrayList<>();
+    return movies;
   }
 
   public List<Movie> getAllMoviesForCategory(Category category){
@@ -32,5 +33,9 @@ public class MovieService
       e.printStackTrace();
     }
     return new ArrayList<>();
+  }
+
+  public void fetchMovieByTitle(String title){
+    movieDAO.fetchMovieByTitle(title);
   }
 }
