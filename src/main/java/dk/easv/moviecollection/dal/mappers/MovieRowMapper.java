@@ -11,10 +11,10 @@ public class MovieRowMapper implements IRowMapper<Movie>
   {
     Movie movie = new Movie();
     movie.setId(resultSet.getInt("id"));
-    movie.setTitle(resultSet.getString("name"));
+    movie.setTitle(resultSet.getString("title"));
     movie.setDescription(resultSet.getString("description"));
     movie.setDirector(resultSet.getString("director"));
-    movie.setReleaseDate(resultSet.getDate("releaseDate"));
+    movie.setReleaseDate(resultSet.getDate("release_date"));
     movie.setRating(resultSet.getInt("rating"));
     return movie;
   }

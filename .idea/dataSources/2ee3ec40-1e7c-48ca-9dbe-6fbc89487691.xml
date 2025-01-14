@@ -19844,8 +19844,8 @@
       <ObjectId>16386</ObjectId>
     </schema>
     <schema id="6330" parent="5908" name="dbo">
-      <IntrospectionTimestamp>2025-01-13.12:44:33.273</IntrospectionTimestamp>
-      <LastIntrospectionLocalTimestamp>2025-01-13.10:44:33</LastIntrospectionLocalTimestamp>
+      <IntrospectionTimestamp>2025-01-14.22:02:31.437</IntrospectionTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-01-14.20:02:31</LastIntrospectionLocalTimestamp>
       <ObjectId>1</ObjectId>
     </schema>
     <schema id="6331" parent="5908" name="guest">
@@ -19874,7 +19874,7 @@
     <table id="6335" parent="6330" name="movies">
       <CreatedTimestamp>2025-01-07.18:52:53.490</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
-      <ModifiedTimestamp>2025-01-13.12:42:23.037</ModifiedTimestamp>
+      <ModifiedTimestamp>2025-01-14.22:26:46.777</ModifiedTimestamp>
       <ObjectId>581577110</ObjectId>
       <LedgerViewId>0</LedgerViewId>
       <LobDataSpaceId>0</LobDataSpaceId>
@@ -19910,7 +19910,7 @@
     <column id="6341" parent="6334" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>1</SequenceIdentity>
+      <SequenceIdentity>1(3)</SequenceIdentity>
       <StoredType>int|0s</StoredType>
     </column>
     <column id="6342" parent="6334" name="category_id">
@@ -19958,10 +19958,10 @@
     <column id="6348" parent="6335" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>1</SequenceIdentity>
+      <SequenceIdentity>1(18)</SequenceIdentity>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="6349" parent="6335" name="name">
+    <column id="6349" parent="6335" name="title">
       <Position>2</Position>
       <StoredType>nvarchar(50 char)|0s</StoredType>
     </column>
@@ -19971,7 +19971,7 @@
     </column>
     <column id="6351" parent="6335" name="director">
       <Position>4</Position>
-      <StoredType>nvarchar(30 char)|0s</StoredType>
+      <StoredType>nvarchar(60 char)|0s</StoredType>
     </column>
     <column id="6352" parent="6335" name="description">
       <Position>5</Position>

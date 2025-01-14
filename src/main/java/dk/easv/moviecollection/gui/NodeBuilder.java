@@ -47,8 +47,8 @@ public class NodeBuilder {
         VBox container = new VBox();
         Image defaultImage = new Image(DEFAULT_MOVIE_PICTURE);
         ImageView imageContainer = new ImageView(defaultImage);
-        imageContainer.setFitWidth(90);
-        imageContainer.setFitHeight(55);
+        imageContainer.setFitWidth(200);
+        imageContainer.setFitHeight(140);
         Label movieTitle = new Label(movie.getTitle());
         container.getChildren().addAll(imageContainer, movieTitle);
 
