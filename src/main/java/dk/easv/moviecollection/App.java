@@ -1,6 +1,7 @@
 package dk.easv.moviecollection;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import dk.easv.moviecollection.bll.CategoryService;
 import dk.easv.moviecollection.dal.connection.DBConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,10 +9,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class App extends Application
 {
-  @Override public void start(Stage stage) throws IOException{
+  CategoryService categoryService = new CategoryService();
+  @Override public void start(Stage stage) throws IOException, SQLException {
+    categoryService.loadCategories();
     FXMLLoader fxmlLoader = new FXMLLoader(
         App.class.getResource("categories-view.fxml"));
     Scene scene = new Scene(fxmlLoader.load());

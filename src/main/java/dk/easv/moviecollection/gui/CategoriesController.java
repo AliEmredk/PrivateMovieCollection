@@ -2,6 +2,7 @@ package dk.easv.moviecollection.gui;
 
 import dk.easv.moviecollection.App;
 import dk.easv.moviecollection.be.Category;
+import dk.easv.moviecollection.bll.CategoryService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,7 +22,10 @@ import java.util.ResourceBundle;
 
 public class CategoriesController implements Initializable
 {
-  
+
+  private static final CategoryService categoryService = new CategoryService();
+  private static final NodeBuilder nodeBuilder = new NodeBuilder();
+
   @FXML
   private Button addNewCategoryBtn;
 
@@ -29,6 +33,7 @@ public class CategoriesController implements Initializable
   private FlowPane flowPaneCategories;
   
   @FXML private Label welcomeText;
+
 
   @FXML protected void showCategoryCreator() throws IOException {
     // Show popup creator
@@ -50,36 +55,8 @@ public class CategoriesController implements Initializable
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    NodeBuilder nodeBuilder = new NodeBuilder();
-    Category category = new Category("Horror");
-    Category category2 = new Category("Action");
-    Category category3 = new Category("Comedy");
-    Category category4 = new Category("Drama");
-    Category category5 = new Category("Fantasy");
-    Category category6 = new Category("Music");
-    Category category7 = new Category("Romance");
-    Category category8 = new Category("Science");
-    Category category9 = new Category("Action");
-    Category category10 = new Category("Action");
-    Category category11 = new Category("Action");
-    Category category12 = new Category("Action");
-    Category category13 = new Category("Action");
-    Category category14 = new Category("Action");
-    List<Category> list = new ArrayList<>();
-    list.add(category);
-    list.add(category2);
-    list.add(category3);
-    list.add(category4);
-    list.add(category5);
-    list.add(category6);
-    list.add(category7);
-    list.add(category8);
-    list.add(category9);
-    list.add(category10);
-    list.add(category11);
-    list.add(category12);
-    list.add(category13);
-    list.add(category14);
-    list.forEach(category1 -> flowPaneCategories.getChildren().add(nodeBuilder.categoryToVBox(category1)));
+
+    List<Category> categories = categoryService.getCategories();
+    categories.forEach(category1 -> flowPaneCategories.getChildren().add(nodeBuilder.categoryToVBox(category1)));
   }
 }
