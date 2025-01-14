@@ -3,8 +3,9 @@ package dk.easv.moviecollection.gui;
 import dk.easv.moviecollection.be.Category;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 
 public class NodeBuilder {
 
@@ -12,15 +13,14 @@ public class NodeBuilder {
 
     public VBox categoryToVBox(Category category) {
         VBox container = new VBox();
+        Circle circle = new Circle(85);
         Image defaultImage = new Image(DEFAULT_CATEGORY_PICTURE);
-        ImageView imageContainer = new ImageView(defaultImage);
-        imageContainer.setFitHeight(160);
-        imageContainer.setFitWidth(160);
+        circle.setFill(new ImagePattern(defaultImage));
         Label movieTitle = new Label(category.getName());
-        container.getChildren().addAll(imageContainer, movieTitle);
+        container.getChildren().addAll(circle, movieTitle);
 
         container.getStyleClass().add("category-container");
-        imageContainer.getStyleClass().add("image-container");
+        circle.getStyleClass().add("image-container");
         return container;
     }
     

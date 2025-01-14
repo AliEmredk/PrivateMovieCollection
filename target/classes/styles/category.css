@@ -1,3 +1,32 @@
+.container{
+    -fx-background-image: url("../images/pexels-felixmittermeier-956999.jpg");
+    -fx-background-size: cover;
+}
+
 .image-container{
     -fx-padding: 10;
+}
+.category-container{
+    -fx-spacing: 10;
+    -fx-alignment: CENTER;
+    -fx-font-weight: bold;
+    -fx-font-size: 16;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: rgba(255,255,255,.2);
+    -fx-padding: 3;
+    -fx-background-radius: 5;
+}
+.scroll-pane .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+.scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(255,255,255,.4);
+    -fx-background-radius: 5;
+}
+.new-category-button{
+    -fx-font-weight: bold;
+    -fx-padding: 5;
+    -fx-background-color: white;
 }
