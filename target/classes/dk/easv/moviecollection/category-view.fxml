@@ -5,9 +5,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="549.0" prefWidth="834.0" styleClass="container" stylesheets="@../../../styles/category.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.moviecollection.gui.CategoryController">
    <children>
@@ -18,7 +18,7 @@
                   <Image url="@../../../images/defaultCategoryPicture.png" />
                </image>
             </ImageView>
-            <Label text="Category" textFill="WHITE">
+            <Label fx:id="lblCategoryName" text="Category" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
@@ -26,9 +26,9 @@
          </children>
       </HBox>
       <ScrollPane hbarPolicy="NEVER" layoutY="202.0" prefHeight="347.0" prefWidth="834.0" style="-fx-background-color: transparent; -fx-background: transparent;">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-        </content>
+         <content>
+            <FlowPane fx:id="flowPaneMovies" prefHeight="200.0" prefWidth="824.0" />
+         </content>
       </ScrollPane>
    </children>
 </AnchorPane>

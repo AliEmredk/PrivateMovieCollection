@@ -2,17 +2,27 @@ package dk.easv.moviecollection.gui;
 
 import dk.easv.moviecollection.be.Category;
 import dk.easv.moviecollection.be.Movie;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.sql.SQLException;
 
 public class NodeBuilder {
 
     private final static String DEFAULT_CATEGORY_PICTURE = "/images/defaultCategoryPicture.png";
     private final static String DEFAULT_MOVIE_PICTURE = "/images/defaultMoviePicture.png";
+    private static final String CATEGORY_VIEW_PATH = "/dk/easv/moviecollection/category-view.fxml";
 
     public VBox categoryToVBox(Category category) {
         VBox container = new VBox();
@@ -24,6 +34,12 @@ public class NodeBuilder {
 
         container.getStyleClass().add("category-container");
         circle.getStyleClass().add("image-container");
+
+        container.setOnMouseClicked(event ->{
+        if (event.getButton() == MouseButton.PRIMARY) {
+            showCategoryView(category, container);
+        }});
+
         return container;
     }
 
@@ -39,5 +55,18 @@ public class NodeBuilder {
         container.getStyleClass().add("movie-container");
         return container;
     }
-    
+
+    private void showCategoryView(Category category, Node node) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(CATEGORY_VIEW_PATH));
+        try {
+            Parent root = loader.load();
+            CategoryController controller = loader.getController();
+            controller.setCategory(category);
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) node.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -34,8 +34,7 @@ public class CategoriesController implements Initializable
 
   @FXML
   private FlowPane flowPaneCategories;
-  
-  @FXML private Label welcomeText;
+
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -50,7 +49,6 @@ public class CategoriesController implements Initializable
         }
       }
     });
-
   }
 
   @FXML protected void showCategoryCreator() throws IOException {
