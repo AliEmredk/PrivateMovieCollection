@@ -1,6 +1,6 @@
 package dk.easv.moviecollection.exceptions;
 
-public class MovieException extends RuntimeException {
+public class MovieException extends Exception {
 
     public MovieException(String e) {
         super(e);

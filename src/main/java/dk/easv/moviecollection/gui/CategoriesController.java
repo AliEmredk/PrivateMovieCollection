@@ -3,6 +3,8 @@ package dk.easv.moviecollection.gui;
 import dk.easv.moviecollection.App;
 import dk.easv.moviecollection.be.Category;
 import dk.easv.moviecollection.bll.CategoryService;
+import dk.easv.moviecollection.gui.models.DataModel;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
@@ -23,7 +26,7 @@ import java.util.ResourceBundle;
 public class CategoriesController implements Initializable
 {
 
-  private static final CategoryService categoryService = new CategoryService();
+  private static final DataModel dataModel = new DataModel();
   private static final NodeBuilder nodeBuilder = new NodeBuilder();
 
   @FXML
@@ -34,6 +37,21 @@ public class CategoriesController implements Initializable
   
   @FXML private Label welcomeText;
 
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    dataModel.getCategories().forEach(category -> flowPaneCategories.getChildren().add(nodeBuilder.categoryToVBox(category)));
+    dataModel.getCategories().addListener((ListChangeListener<Category>) change -> {
+      while (change.next()) {
+        if (change.wasAdded()) {
+          for (Category category : change.getAddedSubList()) {
+            VBox node = nodeBuilder.categoryToVBox(category);
+            flowPaneCategories.getChildren().add(node);
+          }
+        }
+      }
+    });
+
+  }
 
   @FXML protected void showCategoryCreator() throws IOException {
     // Show popup creator
@@ -53,10 +71,5 @@ public class CategoriesController implements Initializable
     stage.show();
   }
 
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
 
-    List<Category> categories = categoryService.getCategories();
-    categories.forEach(category1 -> flowPaneCategories.getChildren().add(nodeBuilder.categoryToVBox(category1)));
-  }
 }

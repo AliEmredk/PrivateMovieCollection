@@ -30,3 +30,10 @@
     -fx-padding: 5;
     -fx-background-color: white;
 }
+
+.movie-container{
+    -fx-spacing: 5;
+    -fx-alignment: CENTER;
+    -fx-font-weight: bold;
+    -fx-font-size: 12;
+}

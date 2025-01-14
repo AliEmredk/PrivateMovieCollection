@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class CategoryService {
-    CategoryDAO categoryDAO = new CategoryDAO();
+    private final CategoryDAO categoryDAO = new CategoryDAO();
 
     private static List<Category> categories;
 
