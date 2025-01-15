@@ -28,7 +28,24 @@ public class DataModel {
     public ObservableList<Category> getCategories() {
         return categories;
     }
+
     public ObservableList<Movie> getMovies() {
         return movies;
+    }
+
+    public ObservableList<Movie> getMoviesByInput(String input) {
+        ObservableList<Movie> filteredMovies = FXCollections.observableArrayList();
+        movies.forEach(movie -> {
+            if(movie.getTitle().toLowerCase().contains(input.toLowerCase())) {
+                filteredMovies.add(movie);
+            }
+            if(movie.getDirector().toLowerCase().contains(input.toLowerCase())) {
+                filteredMovies.add(movie);
+            }
+            if(input.contains(movie.getReleaseDate().toString())) {
+                filteredMovies.add(movie);
+            }
+        });
+        return filteredMovies;
     }
 }

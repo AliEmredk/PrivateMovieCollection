@@ -12,6 +12,7 @@ public class CategoryRowMapper implements IRowMapper<Category>
     Category category = new Category();
     category.setId(resultSet.getInt("id"));
     category.setName(resultSet.getString("name"));
+    category.setPath(resultSet.getString("image_path"));
     return category;
   }
 }

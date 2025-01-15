@@ -24,8 +24,8 @@ public class CategoryDAO extends CrudDAO<Category>
   public Category createNew(Category category) throws SQLException
   {
     return this.insertReturn(
-        "insert into categories (name) values (?)",
-          new Object[]{category.getName()},
+        "insert into categories (name, image_path) values (?, ?)",
+          new Object[]{category.getName(), category.getPath()},
           rowMapper,
         "select * from categories where id = ?");
   }

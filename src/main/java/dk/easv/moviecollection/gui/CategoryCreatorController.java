@@ -56,7 +56,9 @@ public class CategoryCreatorController implements Initializable {
         // set initial directory
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
         File selectedFile = fileChooser.showOpenDialog(stage);
-        path = selectedFile.toURI().toString();
+        if (selectedFile != null) {
+            path = selectedFile.toURI().toString();
+        }
         imgViewEditIcon.setImage(new Image(selectedFile.toURI().toString()));
     }
     @FXML
