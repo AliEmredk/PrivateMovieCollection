@@ -20,6 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CategoryCreatorController implements Initializable {
@@ -33,12 +34,12 @@ public class CategoryCreatorController implements Initializable {
     @FXML
     private ImageView imgViewEditIcon;
 
-    private String path = "src/main/resources/images";
+    private String path = "/src/main/resources/images";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Set a default image
-        Image defaultImage = new Image(getClass().getResource("/images/defaultCategoryPicture.png").toExternalForm());
+        Image defaultImage = new Image(Objects.requireNonNull(getClass().getResource("/images/defaultCategoryPicture.png")).toExternalForm());
         imgViewEditIcon.setImage(defaultImage);
 
         imgViewEditIcon.setOnMouseClicked(event -> {

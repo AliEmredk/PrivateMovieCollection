@@ -32,6 +32,7 @@ public class NodeBuilder {
         if(category.getPath() != null && !category.getPath().isEmpty()) {
             File file = new File(category.getPath());
             defaultImage = new Image(file.toURI().toString());
+            System.out.println(defaultImage);
         }
         circle.setFill(new ImagePattern(defaultImage));
         Label categoryName = new Label(category.getName());
