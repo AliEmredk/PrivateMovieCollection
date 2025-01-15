@@ -4,12 +4,15 @@ import dk.easv.moviecollection.be.Category;
 import dk.easv.moviecollection.be.Movie;
 import dk.easv.moviecollection.gui.models.DataModel;
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -19,17 +22,30 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class CategoryController {
+public class CategoryController implements Initializable {
 
     private Category category;
     private final DataModel dataModel = new DataModel();
     private final NodeBuilder nodeBuilder = new NodeBuilder();
     private static final String CATEGORIES_VIEW_PATH = "/dk/easv/moviecollection/categories-view.fxml";
+
     @FXML
     private Label lblCategoryName;
 
     @FXML
     private FlowPane flowPaneMovies;
+
+    @FXML
+    private TextField searchBar;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+            clear();
+            search(newValue).forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
+        });
+
+    }
 
     @FXML
     private void showCategoriesWindow(){
@@ -65,6 +81,11 @@ public class CategoryController {
             }
         });
     }
-
+    private ObservableList<Movie> search(String input){
+        return dataModel.getMoviesByInput(input);
+    }
+    private void clear(){
+        flowPaneMovies.getChildren().clear();
+    }
 
 }

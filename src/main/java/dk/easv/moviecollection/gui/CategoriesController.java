@@ -1,27 +1,22 @@
 package dk.easv.moviecollection.gui;
 
-import dk.easv.moviecollection.App;
 import dk.easv.moviecollection.be.Category;
-import dk.easv.moviecollection.bll.CategoryService;
 import dk.easv.moviecollection.gui.models.DataModel;
 import javafx.collections.ListChangeListener;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class CategoriesController implements Initializable
@@ -41,7 +36,7 @@ public class CategoriesController implements Initializable
   public void initialize(URL location, ResourceBundle resources) {
     dataModel.getCategories().forEach(category -> flowPaneCategories.getChildren().add(nodeBuilder.categoryToVBox(category)));
     dataModel.getCategories().addListener((ListChangeListener<Category>) change -> {
-      System.out.println("Something has changed");
+      flowPaneCategories.getChildren().clear();
       while (change.next()) {
         if (change.wasAdded()) {
           for (Category category : change.getAddedSubList()) {
@@ -71,22 +66,4 @@ public class CategoriesController implements Initializable
     stage.show();
   }
 
-
-  public void showMovieCreator(ActionEvent actionEvent) throws IOException {
-    // Show popup creator
-    FXMLLoader loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("/dk/easv/moviecollection/movieCreator.fxml"));
-
-    if (loader.getLocation() == null) {
-      throw new IOException("Fxml file not found");
-    }
-
-    Parent scene = loader.load();
-    Stage stage = new Stage();
-    stage.setScene(new Scene(scene));
-    stage.setResizable(false);
-    stage.setTitle("Movie Creator");
-    stage.centerOnScreen();
-    stage.show();
-  }
 }
