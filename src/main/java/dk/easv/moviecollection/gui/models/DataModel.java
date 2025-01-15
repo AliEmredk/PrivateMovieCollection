@@ -58,4 +58,13 @@ public class DataModel {
         });
         return filteredMovies;
     }
+
+    public void deleteCategory(Category category) {
+        categories.remove(category);
+        try {
+            categoryService.remove(category);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

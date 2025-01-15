@@ -112,4 +112,10 @@ public class CategoryController implements Initializable {
         flowPaneMovies.getChildren().clear();
     }
 
+    public void deleteCategory() {
+
+    dataModel.deleteCategory(category);
+
+
+    }
 }
