@@ -50,7 +50,10 @@ public class NodeBuilder {
         imageContainer.setFitWidth(200);
         imageContainer.setFitHeight(140);
         Label movieTitle = new Label(movie.getTitle());
-        container.getChildren().addAll(imageContainer, movieTitle);
+        Label movieDirector = new Label("Director: " +  movie.getDirector());
+        String rating = String.valueOf(movie.getRating());
+        Label movieRating = new Label("Rating: " + rating);
+        container.getChildren().addAll(imageContainer, movieTitle, movieDirector, movieRating);
 
         container.getStyleClass().add("movie-container");
         return container;

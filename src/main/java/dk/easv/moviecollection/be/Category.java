@@ -3,6 +3,7 @@ package dk.easv.moviecollection.be;
 public class Category {
     private int id;
     private String name;
+    private String path;
 
     public Category() {
         this.id = 0;
@@ -27,7 +28,9 @@ public class Category {
     {
         this.id = id;
     }
-
+    public void setPath(String path){
+        this.path = path;
+    }
     public void setName(String name)
     {
         this.name = name;

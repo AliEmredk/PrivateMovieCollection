@@ -22,4 +22,9 @@ public class CategoryService {
     public List<Category> getCategories() {
         return categories;
     }
+
+    public Category createNew(Category category) throws SQLException
+    {
+        return categoryDAO.createNew(category);
+    }
 }

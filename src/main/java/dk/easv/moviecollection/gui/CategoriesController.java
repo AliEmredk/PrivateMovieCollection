@@ -40,6 +40,7 @@ public class CategoriesController implements Initializable
   public void initialize(URL location, ResourceBundle resources) {
     dataModel.getCategories().forEach(category -> flowPaneCategories.getChildren().add(nodeBuilder.categoryToVBox(category)));
     dataModel.getCategories().addListener((ListChangeListener<Category>) change -> {
+      System.out.println("Something has changed");
       while (change.next()) {
         if (change.wasAdded()) {
           for (Category category : change.getAddedSubList()) {
