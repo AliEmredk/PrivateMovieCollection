@@ -57,6 +57,7 @@ public class CategoryCreatorController implements Initializable {
         fileChooser.setTitle("Select a picture");
         FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files (*.png, *.jpg, *.jpeg)", "*.png", "*.jpg", "*.jpeg");
         fileChooser.getExtensionFilters().add(imageFilter);
+        // set initial directory
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
         File selectedFile = fileChooser.showOpenDialog(stage);
         if (selectedFile != null) {
