@@ -1,6 +1,7 @@
 package dk.easv.moviecollection.dal.DAOentities;
 
 import dk.easv.moviecollection.be.Category;
+import dk.easv.moviecollection.be.CategoryMovie;
 import dk.easv.moviecollection.be.Movie;
 import dk.easv.moviecollection.dal.CrudDAO;
 import dk.easv.moviecollection.dal.HttpClientProvider;
@@ -12,7 +13,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.StringTokenizer;
 
 public class MovieDAO extends CrudDAO<Movie>
 {
@@ -64,4 +64,5 @@ public class MovieDAO extends CrudDAO<Movie>
     System.out.println(request);
     return null;
   }
+
 }

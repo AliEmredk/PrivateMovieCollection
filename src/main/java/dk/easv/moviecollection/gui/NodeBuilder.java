@@ -15,6 +15,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -29,7 +30,8 @@ public class NodeBuilder {
         Circle circle = new Circle(85);
         Image defaultImage = new Image(DEFAULT_CATEGORY_PICTURE);
         if(category.getPath() != null && !category.getPath().isEmpty()) {
-            defaultImage = new Image(category.getPath());
+            File file = new File(category.getPath());
+            defaultImage = new Image(file.toURI().toString());
         }
         circle.setFill(new ImagePattern(defaultImage));
         Label categoryName = new Label(category.getName());

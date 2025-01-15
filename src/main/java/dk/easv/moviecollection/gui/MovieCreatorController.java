@@ -1,7 +1,10 @@
 package dk.easv.moviecollection.gui;
 
+import dk.easv.moviecollection.be.Category;
 import dk.easv.moviecollection.be.Movie;
+import dk.easv.moviecollection.bll.CategoryService;
 import dk.easv.moviecollection.bll.MovieService;
+import dk.easv.moviecollection.dal.DAOentities.CategoryDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,13 +19,18 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MovieCreatorController implements Initializable {
 
     private final MovieService movieService = new MovieService();
-    public ListView categoryListView;
-    public ComboBox categoryComboBox;
+    private final CategoryDAO categoryDAO = new CategoryDAO();
+
+    @FXML
+    private ListView<Category> categoryListView;
+    @FXML
+    private ComboBox<Category> categoryComboBox;
 
 
     @FXML
@@ -44,7 +52,7 @@ public class MovieCreatorController implements Initializable {
         Stage stage = (Stage) nameTxt.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select a picture");
-        FileChooser.ExtensionFilter movieFilter= new FileChooser.ExtensionFilter("MP4 Files", "*.mp4");
+        FileChooser.ExtensionFilter movieFilter = new FileChooser.ExtensionFilter("MP4 Files", "*.mp4");
         fileChooser.getExtensionFilters().add(movieFilter);
         // set initial directory
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
@@ -53,7 +61,7 @@ public class MovieCreatorController implements Initializable {
 
         if (nameTxt.getText().isEmpty() || releaseDateTxt.getText().isEmpty() ||
                 directorTxt.getText().isEmpty() || descriptionTxt.getText().isEmpty() ||
-                ratingSlider.getValue() < 0 || ratingSlider.getValue() > 10){
+                ratingSlider.getValue() < 0 || ratingSlider.getValue() > 10) {
             showError("All fields must be filled, and a file must be selected.");
         }
 
@@ -70,6 +78,11 @@ public class MovieCreatorController implements Initializable {
 
         //movie.setRating(ratingSlider)
         movieService.createNew(movie);
+
+        if (categoryComboBox.getSelectionModel().isEmpty()) {
+            showError("Please select a category.");
+            return;
+        }
 
 
     }
@@ -102,5 +115,24 @@ public class MovieCreatorController implements Initializable {
         ratingSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             ratingSlider.setValue(Math.round(newValue.doubleValue()));
         });
+
+        try {
+            List<Category> categories = categoryDAO.getAll();
+            for (Category category : categories) {
+                categoryComboBox.getItems().add(category);
+            }
+        } catch (SQLException e) {
+            showError("Error loading categories: " + e.getMessage());
+        }
+
+        categoryComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("Selected (Lambda): " + newValue);
+            if (categoryListView.getItems().contains(newValue)) {
+                showError("Category already exists");
+                return;
+            }
+            categoryListView.getItems().add(newValue);
+        });
+
     }
 }

@@ -38,5 +38,10 @@ public class Category {
     public String getPath(){
         return path;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
 
