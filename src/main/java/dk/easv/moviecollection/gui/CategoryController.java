@@ -25,6 +25,7 @@ public class CategoryController {
     private final DataModel dataModel = new DataModel();
     private final NodeBuilder nodeBuilder = new NodeBuilder();
     private static final String CATEGORIES_VIEW_PATH = "/dk/easv/moviecollection/categories-view.fxml";
+    private static final String MOVIE_INFO_VIEW_PATH = "/dk/easv/moviecollection/movie-info.fxml";
     @FXML
     private Label lblCategoryName;
 
@@ -53,7 +54,24 @@ public class CategoryController {
     private void setData() throws SQLException {
         lblCategoryName.setText(category.getName());
         dataModel.loadMoviesByCategory(category);
-        dataModel.getMovies().forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
+        dataModel.getMovies().forEach(movie ->{
+            VBox node = nodeBuilder.movieToVBox(movie);
+            flowPaneMovies.getChildren().add(node);
+            node.setOnMouseClicked(event -> {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(MOVIE_INFO_VIEW_PATH));
+                try {
+                    Parent root = loader.load();
+                    MovieInfoController movieInfoController = loader.getController();
+                    movieInfoController.setMovie(movie);
+                    Scene scene = new Scene(root);
+                    Stage stage = new Stage();
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        });
         dataModel.getMovies().addListener((ListChangeListener<Movie>) change -> {
             while (change.next()) {
                 if (change.wasAdded()) {
