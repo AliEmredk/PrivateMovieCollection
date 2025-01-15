@@ -5,6 +5,7 @@ import dk.easv.moviecollection.be.Category;
 import dk.easv.moviecollection.bll.CategoryService;
 import dk.easv.moviecollection.gui.models.DataModel;
 import javafx.collections.ListChangeListener;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -71,4 +72,21 @@ public class CategoriesController implements Initializable
   }
 
 
+  public void showMovieCreator(ActionEvent actionEvent) throws IOException {
+    // Show popup creator
+    FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(getClass().getResource("/dk/easv/moviecollection/movieCreator.fxml"));
+
+    if (loader.getLocation() == null) {
+      throw new IOException("Fxml file not found");
+    }
+
+    Parent scene = loader.load();
+    Stage stage = new Stage();
+    stage.setScene(new Scene(scene));
+    stage.setResizable(false);
+    stage.setTitle("Movie Creator");
+    stage.centerOnScreen();
+    stage.show();
+  }
 }

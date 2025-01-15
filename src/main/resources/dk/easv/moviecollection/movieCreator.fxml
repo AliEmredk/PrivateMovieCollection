@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="351.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.moviecollection.gui.MovieCreatorController">
+   <children>
+      <VBox layoutX="-1.0" layoutY="-2.0" prefHeight="351.0" prefWidth="454.0">
+         <children>
+            <HBox prefHeight="62.0" prefWidth="454.0">
+               <children>
+                  <Label text="Name : ">
+                     <HBox.margin>
+                        <Insets left="40.0" top="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="nameTxt">
+                     <HBox.margin>
+                        <Insets left="52.0" top="17.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="63.0" prefWidth="454.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
+                  <Label text="Release Date :">
+                     <HBox.margin>
+                        <Insets left="40.0" top="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="releaseDateTxt">
+                     <HBox.margin>
+                        <Insets left="21.0" top="17.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="64.0" prefWidth="454.0">
+               <children>
+                  <Label text="Director :">
+                     <HBox.margin>
+                        <Insets left="40.0" top="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="directorTxt">
+                     <HBox.margin>
+                        <Insets left="47.0" top="17.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="60.0" prefWidth="454.0">
+               <children>
+                  <Label text="Description :">
+                     <HBox.margin>
+                        <Insets left="40.0" top="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextArea fx:id="descriptionTxt" prefHeight="9.0" prefWidth="200.0">
+                     <HBox.margin>
+                        <Insets left="12.0" />
+                     </HBox.margin>
+                  </TextArea>
+               </children>
+            </HBox>
+            <HBox prefHeight="62.0" prefWidth="454.0">
+               <children>
+                  <Label text="Rating :">
+                     <HBox.margin>
+                        <Insets left="40.0" top="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="0">
+                     <HBox.margin>
+                        <Insets left="60.0" top="22.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Slider fx:id="ratingSlider" prefHeight="14.0" prefWidth="118.0">
+                     <HBox.margin>
+                        <Insets left="3.0" top="22.0" />
+                     </HBox.margin>
+                  </Slider>
+                  <Label text="10">
+                     <HBox.margin>
+                        <Insets top="20.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="67.0" prefWidth="454.0" />
+         </children>
+      </VBox>
+      <ListView fx:id="categoryListView" layoutX="410.0" layoutY="27.0" prefHeight="177.0" prefWidth="224.0" />
+      <Button alignment="CENTER" layoutX="559.0" layoutY="305.0" mnemonicParsing="false" onAction="#addMovie" text="Add Movie" />
+      <ComboBox fx:id="categoryComboBox" layoutX="410.0" layoutY="215.0" onAction="#categoryComboBoxAct" prefWidth="150.0" />
+   </children>
+</AnchorPane>

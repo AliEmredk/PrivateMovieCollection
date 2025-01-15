@@ -16,6 +16,7 @@
                </padding></FlowPane>
          </content>
       </ScrollPane>
-      <Button fx:id="addNewCategoryBtn" layoutX="680.0" layoutY="477.0" mnemonicParsing="false" onAction="#showCategoryCreator" styleClass="new-category-button" stylesheets="@../../../styles/category.css" text="Add new category" AnchorPane.leftAnchor="680.0" AnchorPane.topAnchor="560.0" />
+      <Button fx:id="addNewCategoryBtn" layoutX="685.0" layoutY="560.0" mnemonicParsing="false" onAction="#showCategoryCreator" styleClass="new-category-button" stylesheets="@../../../styles/category.css" text="Add new category" AnchorPane.leftAnchor="685.0" AnchorPane.topAnchor="560.0" />
+      <Button layoutX="550.0" layoutY="561.0" mnemonicParsing="false" onAction="#showMovieCreator" prefHeight="26.0" prefWidth="113.0" text="Add new movie" />
    </children>
 </AnchorPane>

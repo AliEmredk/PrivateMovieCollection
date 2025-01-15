@@ -26,6 +26,10 @@ public class MovieService
     return movies;
   }
 
+  public Movie createNew(Movie movie) throws SQLException {
+    return movieDAO.createNew(movie);
+  }
+
   public List<Movie> getAllMoviesForCategory(Category category){
     try {
       return movieDAO.getMoviesForCategory(category);

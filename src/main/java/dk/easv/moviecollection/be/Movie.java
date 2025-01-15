@@ -5,7 +5,7 @@ import java.util.Date;
 public class Movie {
     private int id;
     private String title;
-    private Date releaseDate;
+    private String releaseDate;
     private String director;
     private String description;
     private int rating;
@@ -19,7 +19,7 @@ public class Movie {
         this.rating = 0;
     }
 
-    public Movie(int id, String title, Date releaseDate, String director, String description, int rating) {
+    public Movie(int id, String title, String releaseDate, String director, String description, int rating) {
         this.id = id;
         this.title = title;
         this.releaseDate = releaseDate;
@@ -27,7 +27,7 @@ public class Movie {
         this.description = description;
         this.rating = rating;
     }
-    public Movie(String title, Date releaseDate, String director, String description, int rating) {
+    public Movie(String title, String releaseDate, String director, String description, int rating) {
         this.title = title;
         this.releaseDate = releaseDate;
         this.director = director;
@@ -45,7 +45,7 @@ public class Movie {
         return title;
     }
 
-    public Date getReleaseDate()
+    public String getReleaseDate()
     {
         return releaseDate;
     }
@@ -90,7 +90,7 @@ public class Movie {
         this.rating = rating;
     }
 
-    public void setReleaseDate(Date releaseDate)
+    public void setReleaseDate(String releaseDate)
     {
         this.releaseDate = releaseDate;
     }
