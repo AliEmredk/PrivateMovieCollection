@@ -31,7 +31,7 @@ public class MovieDAO extends CrudDAO<Movie>
 
   public Movie createNew(Movie movie) throws SQLException{
     return this.insertReturn(
-        "insert into movies (name, release_date, director, description, rating) values (?,?,?,?,?)",
+        "insert into movies (title, release_date, director, description, rating) values (?,?,?,?,?)",
         new Object[]{movie.getTitle(), movie.getReleaseDate(), movie.getDirector(), movie.getDescription(), movie.getRating()},
         rowMapper,
         "select * from movies where id=?");
@@ -44,7 +44,7 @@ public class MovieDAO extends CrudDAO<Movie>
   public void update(Movie newMovie, Movie oldMovie) throws SQLException
   {
     this.update(
-        "update movies set name=?, release_date=?, director=?, description=?, rating=? where id=?",
+        "update movies set title=?, release_date=?, director=?, description=?, rating=? where id=?",
         new Object[]{newMovie.getTitle(), newMovie.getReleaseDate(), newMovie.getDirector(), newMovie.getDescription(), newMovie.getRating(), oldMovie.getId()});
   }
 

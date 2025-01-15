@@ -19858,7 +19858,7 @@
     <table id="6333" parent="6330" name="categories">
       <CreatedTimestamp>2025-01-07.18:58:32.193</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
-      <ModifiedTimestamp>2025-01-15.13:45:27.047</ModifiedTimestamp>
+      <ModifiedTimestamp>2025-01-13.12:29:36.973</ModifiedTimestamp>
       <ObjectId>613577224</ObjectId>
       <LedgerViewId>0</LedgerViewId>
       <LobDataSpaceId>0</LobDataSpaceId>
@@ -19874,7 +19874,7 @@
     <table id="6335" parent="6330" name="movies">
       <CreatedTimestamp>2025-01-07.18:52:53.490</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
-      <ModifiedTimestamp>2025-01-15.14:55:13.437</ModifiedTimestamp>
+      <ModifiedTimestamp>2025-01-15.15:52:22.320</ModifiedTimestamp>
       <ObjectId>581577110</ObjectId>
       <LedgerViewId>0</LedgerViewId>
       <LobDataSpaceId>0</LobDataSpaceId>
@@ -19882,7 +19882,7 @@
     <column id="6336" parent="6333" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>1(35)</SequenceIdentity>
+      <SequenceIdentity>1(11)</SequenceIdentity>
       <StoredType>int|0s</StoredType>
     </column>
     <column id="6337" parent="6333" name="name">
@@ -19891,7 +19891,7 @@
     </column>
     <column id="6338" parent="6333" name="image_path">
       <Position>3</Position>
-      <StoredType>nvarchar(100 char)|0s</StoredType>
+      <StoredType>nvarchar(40 char)|0s</StoredType>
     </column>
     <index id="6339" parent="6333" name="categories_pk">
       <Clustering>1</Clustering>
@@ -19910,7 +19910,7 @@
     <column id="6341" parent="6334" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>1</SequenceIdentity>
+      <SequenceIdentity>1(59)</SequenceIdentity>
       <StoredType>int|0s</StoredType>
     </column>
     <column id="6342" parent="6334" name="category_id">
@@ -19958,7 +19958,7 @@
     <column id="6348" parent="6335" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>1(58)</SequenceIdentity>
+      <SequenceIdentity>1(59)</SequenceIdentity>
       <StoredType>int|0s</StoredType>
     </column>
     <column id="6349" parent="6335" name="title">
@@ -19967,7 +19967,7 @@
     </column>
     <column id="6350" parent="6335" name="release_date">
       <Position>3</Position>
-      <StoredType>date|0s</StoredType>
+      <StoredType>nvarchar(100 char)|0s</StoredType>
     </column>
     <column id="6351" parent="6335" name="director">
       <Position>4</Position>
