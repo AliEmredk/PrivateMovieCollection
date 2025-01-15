@@ -46,10 +46,10 @@ public class CategoryController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        searchBar.textProperty().addListener((_, _, newValue) -> {
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
             search(newValue, minRatingValue, maxRatingValue).forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
         });
-        minRating.textProperty().addListener((_, _, newValue) -> {
+        minRating.textProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null && !newValue.isEmpty()) {
                 minRatingValue = newValue;
             }
@@ -58,7 +58,7 @@ public class CategoryController implements Initializable {
             }
             search(searchBar.getText(), minRatingValue, maxRatingValue).forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
         });
-        maxRating.textProperty().addListener((_, _, newValue) -> {
+        maxRating.textProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null && !newValue.isEmpty()) {
                 maxRatingValue = newValue;
             }
