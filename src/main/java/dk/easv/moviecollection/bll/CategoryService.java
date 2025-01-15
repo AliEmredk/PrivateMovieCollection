@@ -11,10 +11,11 @@ public class CategoryService {
     private final CategoryDAO categoryDAO;
     private static List<Category> categories;
 
-    public CategoryService(){
+    public CategoryService() {
         this.categoryDAO = new CategoryDAO();
         categories = new ArrayList<>();
     }
+
     public void loadCategories() throws SQLException {
         categories = categoryDAO.getAll();
     }
@@ -23,8 +24,12 @@ public class CategoryService {
         return categories;
     }
 
-    public Category createNew(Category category) throws SQLException
-    {
+    public Category createNew(Category category) throws SQLException {
         return categoryDAO.createNew(category);
+    }
+
+
+    public void remove(Category category) throws SQLException {
+        categoryDAO.delete(category);
     }
 }

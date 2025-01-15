@@ -72,5 +72,5 @@ public class CategoryCreatorController implements Initializable {
         dataModel.loadCategories();
         stage.close();
     }
-
 }
+
