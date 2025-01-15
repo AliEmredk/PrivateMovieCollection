@@ -16,6 +16,7 @@ public class DataModel {
 
     private static ObservableList<Category> categories = FXCollections.observableArrayList();;
     private ObservableList<Movie> movies = FXCollections.observableArrayList();
+    private ObservableList<Movie> filteredMovies = FXCollections.observableArrayList();
 
     public void loadCategories() throws SQLException {
         categoryService.loadCategories();
@@ -33,18 +34,27 @@ public class DataModel {
         return movies;
     }
 
-    public ObservableList<Movie> getMoviesByInput(String input) {
-        ObservableList<Movie> filteredMovies = FXCollections.observableArrayList();
+    public ObservableList<Movie> getMoviesByInput(String input, String minRating, String maxRating) {
+        filteredMovies.clear();
+        int minRatingInt = Integer.parseInt(minRating);
+        int maxRatingInt = Integer.parseInt(maxRating);
         movies.forEach(movie -> {
             if(movie.getTitle().toLowerCase().contains(input.toLowerCase())) {
-                filteredMovies.add(movie);
+                if(movie.getRating() >= minRatingInt && movie.getRating() <= maxRatingInt) {
+                    filteredMovies.add(movie);
+                }
             }
-            if(movie.getDirector().toLowerCase().contains(input.toLowerCase())) {
-                filteredMovies.add(movie);
+            else if(movie.getDirector().toLowerCase().contains(input.toLowerCase())) {
+                if(movie.getRating() >= minRatingInt && movie.getRating() <= maxRatingInt) {
+                    filteredMovies.add(movie);
+                }
             }
-            if(input.contains(movie.getReleaseDate().toString())) {
-                filteredMovies.add(movie);
+            else if(input.contains(movie.getReleaseDate().toString())) {
+                if(movie.getRating() >= minRatingInt && movie.getRating() <= maxRatingInt) {
+                    filteredMovies.add(movie);
+                }
             }
+
         });
         return filteredMovies;
     }

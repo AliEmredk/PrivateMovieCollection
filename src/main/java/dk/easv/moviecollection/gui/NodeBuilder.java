@@ -28,7 +28,7 @@ public class NodeBuilder {
         VBox container = new VBox();
         Circle circle = new Circle(85);
         Image defaultImage = new Image(DEFAULT_CATEGORY_PICTURE);
-        if(category.getPath() != null) {
+        if(category.getPath() != null && !category.getPath().isEmpty()) {
             defaultImage = new Image(category.getPath());
         }
         circle.setFill(new ImagePattern(defaultImage));

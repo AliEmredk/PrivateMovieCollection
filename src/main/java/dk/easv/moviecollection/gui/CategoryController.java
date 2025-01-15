@@ -5,7 +5,6 @@ import dk.easv.moviecollection.be.Movie;
 import dk.easv.moviecollection.gui.models.DataModel;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,7 +27,8 @@ public class CategoryController implements Initializable {
     private final DataModel dataModel = new DataModel();
     private final NodeBuilder nodeBuilder = new NodeBuilder();
     private static final String CATEGORIES_VIEW_PATH = "/dk/easv/moviecollection/categories-view.fxml";
-
+    private String minRatingValue = "0";
+    private String maxRatingValue = "10";
     @FXML
     private Label lblCategoryName;
 
@@ -36,13 +36,36 @@ public class CategoryController implements Initializable {
     private FlowPane flowPaneMovies;
 
     @FXML
+    private TextField minRating;
+
+    @FXML
+    private TextField maxRating;
+
+    @FXML
     private TextField searchBar;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
-            clear();
-            search(newValue).forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
+        searchBar.textProperty().addListener((_, _, newValue) -> {
+            search(newValue, minRatingValue, maxRatingValue).forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
+        });
+        minRating.textProperty().addListener((_, _, newValue) -> {
+            if(newValue != null && !newValue.isEmpty()) {
+                minRatingValue = newValue;
+            }
+            else{
+                minRatingValue = "0";
+            }
+            search(searchBar.getText(), minRatingValue, maxRatingValue).forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
+        });
+        maxRating.textProperty().addListener((_, _, newValue) -> {
+            if(newValue != null && !newValue.isEmpty()) {
+                maxRatingValue = newValue;
+            }
+            else{
+                maxRatingValue = "10";
+            }
+            search(searchBar.getText(), minRatingValue, maxRatingValue).forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
         });
 
     }
@@ -81,8 +104,9 @@ public class CategoryController implements Initializable {
             }
         });
     }
-    private ObservableList<Movie> search(String input){
-        return dataModel.getMoviesByInput(input);
+    private ObservableList<Movie> search(String input, String minRating, String maxRating) {
+        clear();
+        return dataModel.getMoviesByInput(input, minRating, maxRating);
     }
     private void clear(){
         flowPaneMovies.getChildren().clear();

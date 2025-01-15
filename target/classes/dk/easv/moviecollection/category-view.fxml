@@ -38,5 +38,7 @@
       </ScrollPane>
       <Button layoutX="41.0" layoutY="24.0" mnemonicParsing="false" onAction="#showCategoriesWindow" style="-fx-background-color: white;" text="Go back to categories" />
       <TextField fx:id="searchBar" layoutX="77.0" layoutY="235.0" promptText="Search" />
+      <TextField fx:id="minRating" layoutX="586.0" layoutY="53.0" promptText="Minimum rating" />
+      <TextField fx:id="maxRating" layoutX="586.0" layoutY="98.0" promptText="Maximum rating" />
    </children>
 </AnchorPane>
