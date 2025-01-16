@@ -8,6 +8,7 @@ public class Movie {
     private String releaseDate;
     private String director;
     private String description;
+    private String moviePath;
     private int rating;
 
     public Movie(){
@@ -55,6 +56,10 @@ public class Movie {
         return description;
     }
 
+    public String getMoviePath() {
+        return moviePath;
+    }
+
     public int getRating()
     {
         return rating;
@@ -94,4 +99,8 @@ public class Movie {
     {
         this.releaseDate = releaseDate;
     }
+
+    public void setMoviePath(String moviePath){this.moviePath = moviePath;}
+
+
 }

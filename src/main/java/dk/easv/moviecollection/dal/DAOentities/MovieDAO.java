@@ -31,8 +31,8 @@ public class MovieDAO extends CrudDAO<Movie>
 
   public Movie createNew(Movie movie) throws SQLException{
     return this.insertReturn(
-        "insert into movies (title, release_date, director, description, rating) values (?,?,?,?,?)",
-        new Object[]{movie.getTitle(), movie.getReleaseDate(), movie.getDirector(), movie.getDescription(), movie.getRating()},
+        "insert into movies (title, release_date, director, description, rating, movie_path) values (?,?,?,?,?,?)",
+        new Object[]{movie.getTitle(), movie.getReleaseDate(), movie.getDirector(), movie.getDescription(), movie.getRating(), movie.getMoviePath()},
         rowMapper,
         "select * from movies where id=?");
   }

@@ -15,7 +15,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,7 +32,9 @@ public class MovieCreatorController implements Initializable {
 
     private final MovieService movieService = new MovieService();
     private final CategoryDAO categoryDAO = new CategoryDAO();
+    private static final String MOVIES_DIRECTORY_PATH = "src/main/resources/dk/easv/moviecollection/movies";
 
+    private String moviePath;
     @FXML
     private ListView<Category> categoryListView;
     @FXML
@@ -46,26 +52,23 @@ public class MovieCreatorController implements Initializable {
     @FXML
     private TextArea descriptionTxt;
 
-    @FXML
-    private String moviePath;
 
-
-    public void selectMovie(ActionEvent event) {
+    public void selectMovie(ActionEvent event) throws IOException {
         Stage stage = (Stage) nameTxt.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select a picture");
-        FileChooser.ExtensionFilter movieFilter = new FileChooser.ExtensionFilter("MP4 Files", "*.mp4");
+        fileChooser.setTitle("Select a movie");
+        FileChooser.ExtensionFilter movieFilter = new FileChooser.ExtensionFilter("MP4, MPEG4 Files", "*.mp4");
         fileChooser.getExtensionFilters().add(movieFilter);
         // set initial directory
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
         File selectedFile = fileChooser.showOpenDialog(stage);
-        moviePath = selectedFile.toURI().toString();
 
         if (nameTxt.getText().isEmpty() || releaseDateTxt.getText().isEmpty() ||
                 directorTxt.getText().isEmpty() || descriptionTxt.getText().isEmpty() ||
                 ratingSlider.getValue() < 0 || ratingSlider.getValue() > 10) {
             showError("All fields must be filled, and a file must be selected.");
         }
+        setFilePath(selectedFile.getAbsolutePath());
     }
     public void addMovie(ActionEvent actionEvent) throws SQLException {
 
@@ -74,6 +77,7 @@ public class MovieCreatorController implements Initializable {
         movie.setDirector(directorTxt.getText());
         movie.setReleaseDate(releaseDateTxt.getText());
         movie.setDescription(descriptionTxt.getText());
+        movie.setMoviePath(moviePath);
 
         int rating = (int) ratingSlider.getValue();
         movie.setRating(rating);
@@ -152,4 +156,25 @@ public class MovieCreatorController implements Initializable {
         });
 
     }
+    private void setFilePath(String filePath) throws IOException {
+        Path sourcePath = Paths.get(filePath);
+
+        Path destinationDir = Paths.get(MOVIES_DIRECTORY_PATH);
+
+        // Ensure the destination directory exists
+        if (!Files.exists(destinationDir)) {
+            Files.createDirectories(destinationDir);
+        }
+
+        // Create the destination path by appending the filename to the directory
+        Path destinationPath = destinationDir.resolve(sourcePath.getFileName());
+
+        // Move the file
+        Files.move(sourcePath, destinationPath);
+
+        // Update the path field with the destination path
+        this.moviePath = destinationPath.toString();
+
+    }
+
 }

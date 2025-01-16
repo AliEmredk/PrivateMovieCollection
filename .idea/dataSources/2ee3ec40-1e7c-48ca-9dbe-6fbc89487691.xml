@@ -19874,7 +19874,7 @@
     <table id="6335" parent="6330" name="movies">
       <CreatedTimestamp>2025-01-07.18:52:53.490</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
-      <ModifiedTimestamp>2025-01-15.14:55:13.437</ModifiedTimestamp>
+      <ModifiedTimestamp>2025-01-16.23:44:46.623</ModifiedTimestamp>
       <ObjectId>581577110</ObjectId>
       <LedgerViewId>0</LedgerViewId>
       <LobDataSpaceId>0</LobDataSpaceId>
@@ -19978,7 +19978,7 @@
     <column id="6350" parent="6335" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>1(58)</SequenceIdentity>
+      <SequenceIdentity>1(67)</SequenceIdentity>
       <StoredType>int|0s</StoredType>
     </column>
     <column id="6351" parent="6335" name="title">
@@ -19987,7 +19987,7 @@
     </column>
     <column id="6352" parent="6335" name="release_date">
       <Position>3</Position>
-      <StoredType>date|0s</StoredType>
+      <StoredType>nvarchar(100 char)|0s</StoredType>
     </column>
     <column id="6353" parent="6335" name="director">
       <Position>4</Position>
@@ -20001,14 +20001,18 @@
       <Position>6</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <index id="6356" parent="6335" name="movies_pk">
+    <column id="6356" parent="6335" name="movie_path">
+      <Position>7</Position>
+      <StoredType>nvarchar(150 char)|0s</StoredType>
+    </column>
+    <index id="6357" parent="6335" name="movies_pk">
       <Clustering>1</Clustering>
       <ColNames>id</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
-    <key id="6357" parent="6335" name="movies_pk">
+    <key id="6358" parent="6335" name="movies_pk">
       <CreatedTimestamp>2025-01-07.19:01:11.840</CreatedTimestamp>
       <ModifiedTimestamp>2025-01-07.19:01:11.840</ModifiedTimestamp>
       <ObjectId>661577395</ObjectId>

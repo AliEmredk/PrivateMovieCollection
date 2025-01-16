@@ -16,6 +16,7 @@ public class MovieRowMapper implements IRowMapper<Movie>
     movie.setDirector(resultSet.getString("director"));
     movie.setReleaseDate(resultSet.getString("release_date"));
     movie.setRating(resultSet.getInt("rating"));
+    movie.setMoviePath(resultSet.getString("movie_path"));
     return movie;
   }
 }
