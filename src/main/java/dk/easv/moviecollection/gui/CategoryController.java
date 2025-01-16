@@ -5,6 +5,7 @@ import dk.easv.moviecollection.be.Movie;
 import dk.easv.moviecollection.gui.models.DataModel;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -122,8 +123,9 @@ public class CategoryController extends Page implements Initializable{
         flowPaneMovies.getChildren().clear();
     }
 
-    public void deleteCategory() {
-
+    @FXML
+    private void deleteCategory(ActionEvent event) throws IOException {
     dataModel.deleteCategory(category);
+    goToCategoriesView(event);
     }
 }

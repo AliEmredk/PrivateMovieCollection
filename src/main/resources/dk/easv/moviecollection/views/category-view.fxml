@@ -40,6 +40,6 @@
       <TextField fx:id="searchBar" layoutX="77.0" layoutY="235.0" promptText="Search" style="-fx-background-color: rgba(255,255,255,.4);" />
       <TextField fx:id="minRating" layoutX="586.0" layoutY="53.0" promptText="Minimum rating" style="-fx-background-color: rgba(255,255,255,.4);" />
       <TextField fx:id="maxRating" layoutX="586.0" layoutY="98.0" promptText="Maximum rating" style="-fx-background-color: rgba(255,255,255,.4);" />
-      <Button layoutX="586.0" layoutY="235.0" mnemonicParsing="false" style="-fx-background-color: rgba(255,255,255,.8);" text="Delete category" textFill="#e16969" />
+      <Button onAction="#deleteCategory" layoutX="586.0" layoutY="235.0" mnemonicParsing="false" style="-fx-background-color: rgba(255,255,255,.8);" text="Delete category" textFill="#e16969" />
    </children>
 </AnchorPane>
