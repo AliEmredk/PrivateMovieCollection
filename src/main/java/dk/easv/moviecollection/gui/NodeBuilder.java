@@ -31,10 +31,8 @@ public class NodeBuilder {
         Image defaultImage = new Image(DEFAULT_CATEGORY_PICTURE);
         if(category.getPath() != null && !category.getPath().isEmpty()) {
             File file = new File(category.getPath());
-            if (file.exists() && !file.isDirectory()) {
+            if(file.exists() && !file.isDirectory()) {
                 defaultImage = new Image(file.toURI().toString());
-            } else {
-                System.out.println("File does not exist or is a directory: " + category.getPath());
             }
         }
         circle.setFill(new ImagePattern(defaultImage));

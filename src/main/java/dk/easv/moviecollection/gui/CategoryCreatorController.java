@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 public class CategoryCreatorController implements Initializable {
 
     private final static String IMAGES_DIRECTORY_PATH = "src/main/resources/dk/easv/moviecollection/images";
-    private final static String DEFAULT_CATEGORY_PICTURE = "/dk/easv/moviecollection/images/defaultCategoryPicture.png";
+    private final static String DEFAULT_CATEGORY_PICTURE = "src/main/resources/dk/easv/moviecollection/images/defaultCategoryPicture.png";
     private final CategoryService categoryService = new CategoryService();
     private final DataModel dataModel = new DataModel();
 
