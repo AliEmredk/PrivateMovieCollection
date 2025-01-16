@@ -28,11 +28,12 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="searchBar" prefHeight="26.0" prefWidth="122.0" promptText="Search" style="-fx-background-color: rgba(255,255,255,.4);">
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
-                  </TextField>
+                  <VBox prefHeight="57.0" prefWidth="158.0" spacing="5.0">
+                     <children>
+                        <TextField fx:id="searchBar" prefHeight="25.0" prefWidth="151.0" promptText="Search" style="-fx-background-color: rgba(255,255,255,.4);" />
+                        <ComboBox fx:id="comboBoxSorting" prefHeight="26.0" prefWidth="167.0" promptText="Sort by" style="-fx-background-color: rgba(255,255,255,.4);" />
+                     </children>
+                  </VBox>
                   <VBox prefHeight="57.0" prefWidth="80.0" spacing="5.0">
                      <children>
                         <TextField fx:id="minRating" prefHeight="25.0" prefWidth="121.0" promptText="Min. rating" style="-fx-background-color: rgba(255,255,255,.4);" />

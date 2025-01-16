@@ -125,7 +125,5 @@ public class CategoryController extends Page implements Initializable{
     public void deleteCategory() {
 
     dataModel.deleteCategory(category);
-
-
     }
 }

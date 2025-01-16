@@ -45,10 +45,14 @@ public class HomePageController extends Page implements Initializable {
     private ComboBox<Category> comboBoxCategories;
 
     @FXML
+    private ComboBox comboBoxSorting;
+
+    @FXML
     private Label lblSelectedCategories;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        setComboBoxSorting();
         try {
             dataModel.loadMovies();
             setComboBox();
@@ -57,11 +61,7 @@ public class HomePageController extends Page implements Initializable {
         }
         Debounce debouncer = new Debounce(200);
         searchBar.textProperty().addListener((observable,   oldValue, newValue) -> {
-            try {
-                search(newValue).forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            search(newValue).forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
         });
         minRating.textProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null && !newValue.isEmpty()) {
@@ -70,11 +70,7 @@ public class HomePageController extends Page implements Initializable {
             else{
                 minRatingValue = "0";
             }
-            try {
-                search(searchBar.getText()).forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            search(searchBar.getText()).forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
         });
         maxRating.textProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null && !newValue.isEmpty()) {
@@ -83,11 +79,7 @@ public class HomePageController extends Page implements Initializable {
             else{
                 maxRatingValue = "10";
             }
-            try {
-                search(searchBar.getText()).forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            search(searchBar.getText()).forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
         });
         comboBoxCategories.valueProperty().addListener((observable, oldValue, newValue) -> debouncer.debounce(() -> Platform.runLater(() -> {
             try {
@@ -100,8 +92,10 @@ public class HomePageController extends Page implements Initializable {
         dataModel.getMovies().forEach(movie -> {
             flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie));
         });
+        comboBoxSorting.valueProperty().addListener((observable, oldValue, newValue) -> {
+        });
     }
-    private ObservableList<Movie> search(String input) throws SQLException {
+    private ObservableList<Movie> search(String input){
         clear();
         return dataModel.getMoviesByInput(input, minRatingValue, maxRatingValue);
     }
@@ -123,6 +117,14 @@ public class HomePageController extends Page implements Initializable {
             }
             selectedCategories.add(newValue);
             lblSelectedCategories.setText(lblSelectedCategories.getText() + newValue + ", ");
+        });
+    }
+    private void setComboBoxSorting(){
+        comboBoxSorting.getItems().addAll(dataModel.getSortingMethods());
+        comboBoxSorting.valueProperty().addListener((observable, oldValue, newValue) -> {
+            dataModel.setCurrentSortingMethod(newValue.toString());
+            search(searchBar.getText()).forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
+
         });
     }
 }
