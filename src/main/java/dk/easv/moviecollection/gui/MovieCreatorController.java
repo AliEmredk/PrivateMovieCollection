@@ -1,6 +1,7 @@
 package dk.easv.moviecollection.gui;
 
 import dk.easv.moviecollection.be.Category;
+import dk.easv.moviecollection.be.CategoryMovie;
 import dk.easv.moviecollection.be.Movie;
 import dk.easv.moviecollection.bll.CategoryService;
 import dk.easv.moviecollection.bll.MovieService;
@@ -18,6 +19,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -48,7 +50,7 @@ public class MovieCreatorController implements Initializable {
     private String moviePath;
 
 
-    public void addMovie(ActionEvent actionEvent) throws SQLException {
+    public void selectMovie(ActionEvent event) {
         Stage stage = (Stage) nameTxt.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select a picture");
@@ -64,6 +66,8 @@ public class MovieCreatorController implements Initializable {
                 ratingSlider.getValue() < 0 || ratingSlider.getValue() > 10) {
             showError("All fields must be filled, and a file must be selected.");
         }
+    }
+    public void addMovie(ActionEvent actionEvent) throws SQLException {
 
         Movie movie = new Movie();
         movie.setTitle(nameTxt.getText());
@@ -76,14 +80,27 @@ public class MovieCreatorController implements Initializable {
 
         movieService.createNew(movie);
 
-        //movie.setRating(ratingSlider)
-        movieService.createNew(movie);
+        int movieId = movieService.getMovieWithHighestId().getId();
+        List<Integer> categoryIds = new ArrayList<>();
+        categoryListView.getItems().forEach(category -> categoryIds.add(category.getId()));
+
+        categoryIds.forEach(categoryId -> {
+            System.out.println(categoryId);
+            CategoryMovie categoryMovie = new CategoryMovie(movieId, categoryId);
+            try {
+                movieService.createCategoryMovie(categoryMovie);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         if (categoryComboBox.getSelectionModel().isEmpty()) {
             showError("Please select a category.");
             return;
         }
 
+        Stage stage = (Stage) nameTxt.getScene().getWindow();
+        stage.close();
 
     }
 

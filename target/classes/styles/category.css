@@ -1,6 +1,6 @@
 .container{
-    /*-fx-background-image: url("../dk/easv/moviecollection/images/pexels-felixmittermeier-956999.jpg");*/
-    -fx-background-color: #1f1f1f;
+    -fx-background-image: url("../dk/easv/moviecollection/images/pexels-felixmittermeier-956999.jpg");
+    /*-fx-background-color: #1f1f1f;*/
     -fx-background-size: cover;
 }
 .menu-button{

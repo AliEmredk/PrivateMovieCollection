@@ -53,6 +53,33 @@ public class MovieDAO extends CrudDAO<Movie>
     String query = "SELECT movies.id, movies.title, movies.director, movies.release_date, movies.description, movies.rating FROM categoryMovie cm INNER JOIN movies ON cm.movie_id = movies.id WHERE cm.category_id = ?;";
     return this.select(query, new Object[]{category.getId()}, rowMapper);
   }
+  public List<Movie> getMoviesForMultipleCategories(List<Category> categories) throws SQLException {
+    // Build the SQL query dynamically
+    StringBuilder queryBuilder = new StringBuilder(
+            "SELECT m.id, m.title, m.director, m.release_date, m.description, m.rating " +
+                    "FROM categoryMovie cm " +
+                    "INNER JOIN movies m ON cm.movie_id = m.id " +
+                    "WHERE cm.category_id IN ("
+    );
+
+    // Add placeholders for the category IDs
+    queryBuilder.append("?,".repeat(categories.size()));
+    queryBuilder.setLength(queryBuilder.length() - 1); // Remove trailing comma
+    queryBuilder.append(") GROUP BY m.id, m.title, m.director, m.release_date, m.description, m.rating " +
+            "HAVING COUNT(DISTINCT cm.category_id) = ?;");
+
+    String query = queryBuilder.toString();
+
+    // Prepare query parameters
+    Object[] params = new Object[categories.size() + 1];
+    for (int i = 0; i < categories.size(); i++) {
+      params[i] = categories.get(i).getId();
+    }
+    params[categories.size()] = categories.size(); // Number of input categories
+
+    // Execute query and map results
+    return this.select(query, params, rowMapper);
+  }
 
   public Movie fetchMovieByTitle(String title){
     HttpRequest request = HttpRequest.newBuilder()
@@ -64,5 +91,9 @@ public class MovieDAO extends CrudDAO<Movie>
     System.out.println(request);
     return null;
   }
-
+  public Movie getMovieWithHighestId() throws SQLException {
+    String query = "SELECT * FROM movies WHERE id = (SELECT MAX(id) FROM movies)";
+    List<Movie> result = this.select(query, new Object[]{}, rowMapper);
+    return result.isEmpty() ? null : result.getFirst();
+  }
 }

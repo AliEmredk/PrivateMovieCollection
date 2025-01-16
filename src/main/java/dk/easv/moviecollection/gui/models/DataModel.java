@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class DataModel {
 
@@ -25,7 +26,10 @@ public class DataModel {
     public void loadMoviesByCategory(Category category) throws SQLException {
         movies.setAll(movieService.getAllMoviesForCategory(category));
     }
-    
+    public void loadMovies() throws SQLException {
+        movieService.loadMovies();
+        movies.setAll(movieService.getAllMovies());
+    }
     public ObservableList<Category> getCategories() {
         return categories;
     }
@@ -35,6 +39,9 @@ public class DataModel {
     }
 
     public ObservableList<Movie> getMoviesByInput(String input, String minRating, String maxRating) {
+        return filterMovies(input, minRating, maxRating, movies);
+    }
+    public ObservableList<Movie> filterMovies(String input, String minRating, String maxRating, List<Movie> movies){
         filteredMovies.clear();
         int minRatingInt = Integer.parseInt(minRating);
         int maxRatingInt = Integer.parseInt(maxRating);
@@ -54,7 +61,6 @@ public class DataModel {
                     filteredMovies.add(movie);
                 }
             }
-
         });
         return filteredMovies;
     }
@@ -66,5 +72,11 @@ public class DataModel {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<Movie> getMoviesByInputAndCategories(String input, String minRatingValue, String maxRatingValue, List<Category> selectedCategories) throws SQLException {
+        List<Movie> filteredMovies = movieService.getMoviesForMultipleCategories(selectedCategories);
+        movies.setAll(filteredMovies);
+        return filterMovies(input, minRatingValue, maxRatingValue, filteredMovies);
     }
 }

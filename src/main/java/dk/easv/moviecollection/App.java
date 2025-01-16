@@ -1,7 +1,9 @@
 package dk.easv.moviecollection;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import dk.easv.moviecollection.be.Movie;
 import dk.easv.moviecollection.bll.CategoryService;
+import dk.easv.moviecollection.dal.DAOentities.MovieDAO;
 import dk.easv.moviecollection.dal.connection.DBConnection;
 import dk.easv.moviecollection.gui.models.DataModel;
 import javafx.application.Application;
@@ -18,7 +20,8 @@ public class App extends Application
   private final DataModel dataModel = new DataModel();
   @Override public void start(Stage stage) throws IOException, SQLException {
     dataModel.loadCategories();
-    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/dk/easv/moviecollection/views/categories-view.fxml"));
+    dataModel.loadMovies();
+    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/dk/easv/moviecollection/views/homepage-view.fxml"));
     Scene scene = new Scene(fxmlLoader.load());
     stage.setTitle("Private Movie Collection");
     stage.setScene(scene);

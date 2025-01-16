@@ -10,6 +10,10 @@ public class CategoryMovie {
         this.movieId = movieId;
         this.categoryId = categoryId;
     }
+    public CategoryMovie(int movieId, int categoryId) {
+        this.movieId = movieId;
+        this.categoryId = categoryId;
+    }
     public CategoryMovie() {
     }
     public int getId() {

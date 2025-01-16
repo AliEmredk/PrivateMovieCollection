@@ -24,14 +24,12 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class CategoryController implements Initializable {
+public class CategoryController extends Page implements Initializable{
 
     private Category category;
     private final DataModel dataModel = new DataModel();
     private final NodeBuilder nodeBuilder = new NodeBuilder();
     private static final String CATEGORIES_VIEW_PATH = "/dk/easv/moviecollection/views/categories-view.fxml";
-    private String minRatingValue = "0";
-    private String maxRatingValue = "10";
     @FXML
     private Label lblCategoryName;
 

@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CategoriesController implements Initializable
+public class CategoriesController extends Page implements Initializable
 {
 
   private static final DataModel dataModel = new DataModel();
@@ -46,47 +46,5 @@ public class CategoriesController implements Initializable
         }
       }
     });
-  }
-
-  @FXML protected void showCategoryCreator() throws IOException {
-    // Show popup creator
-    FXMLLoader loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("/dk/easv/moviecollection/views/categoryCreator.fxml"));
-
-    if (loader.getLocation() == null) {
-      throw new IOException("Fxml file not found");
-    }
-
-    Parent scene = loader.load();
-    Stage stage = new Stage();
-    stage.setScene(new Scene(scene));
-    stage.setResizable(false);
-    stage.setTitle("Category Creator");
-    stage.centerOnScreen();
-    stage.show();
-  }
-
-  public void showMovieCreator(ActionEvent actionEvent) throws IOException {
-    FXMLLoader loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("/dk/easv/moviecollection/views/movieCreator.fxml"));
-
-    if (loader.getLocation() == null) {
-      throw new IOException("Fxml file not found");
-    }
-
-    Parent scene = loader.load();
-    Stage stage = new Stage();
-    stage.setScene(new Scene(scene));
-    stage.setResizable(false);
-    stage.setTitle("Movie Creator");
-    stage.centerOnScreen();
-    stage.show();
-
-  }
-
-  public void goToHomePageView(ActionEvent actionEvent) {
-  }
-
-  public void goToCategoriesView(ActionEvent actionEvent) {
   }
 }

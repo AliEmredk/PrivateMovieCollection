@@ -6,33 +6,55 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="849.0" styleClass="container" stylesheets="@../../../../styles/category.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.moviecollection.gui.CategoriesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="849.0" styleClass="container" stylesheets="@../../../../styles/category.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.moviecollection.gui.CategoriesController">
    <children>
-      <HBox layoutX="33.0" layoutY="14.0" prefHeight="42.0" prefWidth="769.0" spacing="40.0" style="-fx-border-color: white; -fx-padding: 10; -fx-border-width: 0 0 .3 0;">
+      <VBox prefHeight="700.0" prefWidth="849.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#goToHomePageView" styleClass="menu-button" stylesheets="@../../../../styles/category.css" text="Home Page" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#goToCategoriesView" styleClass="menu-button" text="Categories" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
+            <HBox prefHeight="42.0" prefWidth="769.0" spacing="40.0" style="-fx-border-color: white; -fx-padding: 10; -fx-border-width: 0 0 .3 0;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#goToHomePageView" styleClass="menu-button" stylesheets="@../../../../styles/category.css" text="Home Page" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#goToCategoriesView" styleClass="menu-button" text="Categories" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </HBox>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="530.0" prefWidth="789.0" style="-fx-background-color: transparent; -fx-background: transparent;">
+               <content>
+                  <FlowPane fx:id="flowPaneCategories" hgap="30.0" prefHeight="27.0" prefWidth="813.0" styleClass="categories" stylesheets="@../../../../styles/category.css" vgap="60.0">
+                     <padding>
+                        <Insets left="35.0" top="15.0" />
+                     </padding>
+                  </FlowPane>
+               </content>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </ScrollPane>
+            <HBox alignment="CENTER_RIGHT" prefHeight="37.0" prefWidth="849.0" spacing="20.0">
+               <children>
+                  <Button fx:id="addNewCategoryBtn" mnemonicParsing="false" onAction="#showCategoryCreator" styleClass="new-category-button" stylesheets="@../../../../styles/category.css" text="Add new category" />
+                  <Button mnemonicParsing="false" onAction="#showMovieCreator" prefHeight="26.0" prefWidth="113.0" style="-fx-font-weight: bold; -fx-background-color: white;" text="Add new movie" />
+               </children>
+               <VBox.margin>
+                  <Insets right="35.0" />
+               </VBox.margin>
+            </HBox>
          </children>
-      </HBox>
-      <ScrollPane hbarPolicy="NEVER" layoutY="91.0" prefHeight="532.0" prefWidth="834.0" style="-fx-background-color: transparent; -fx-background: transparent;">
-         <content>
-            <FlowPane fx:id="flowPaneCategories" hgap="30.0" prefHeight="27.0" prefWidth="808.0" styleClass="categories" stylesheets="@../../../../styles/category.css" vgap="60.0">
-               <padding>
-                  <Insets left="35.0" top="15.0" />
-               </padding></FlowPane>
-         </content>
-      </ScrollPane>
-      <Button fx:id="addNewCategoryBtn" layoutX="704.0" layoutY="638.0" mnemonicParsing="false" onAction="#showCategoryCreator" styleClass="new-category-button" stylesheets="@../../../../styles/category.css" text="Add new category" AnchorPane.leftAnchor="704.0" AnchorPane.topAnchor="638.0" />
-      <Button layoutX="566.0" layoutY="639.0" mnemonicParsing="false" onAction="#showMovieCreator" prefHeight="26.0" prefWidth="113.0" style="-fx-font-weight: bold; -fx-background-color: white;" text="Add new movie" />
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+      </VBox>
    </children>
 </AnchorPane>
