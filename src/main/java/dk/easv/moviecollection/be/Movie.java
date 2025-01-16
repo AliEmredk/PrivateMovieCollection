@@ -102,5 +102,4 @@ public class Movie {
 
     public void setMoviePath(String moviePath){this.moviePath = moviePath;}
 
-
 }

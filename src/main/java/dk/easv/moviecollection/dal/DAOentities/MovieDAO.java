@@ -50,7 +50,7 @@ public class MovieDAO extends CrudDAO<Movie>
 
   public List<Movie> getMoviesForCategory(Category category) throws SQLException
   {
-    String query = "SELECT movies.id, movies.title, movies.director, movies.release_date, movies.description, movies.rating FROM categoryMovie cm INNER JOIN movies ON cm.movie_id = movies.id WHERE cm.category_id = ?;";
+    String query = "SELECT movies.id, movies.title, movies.director, movies.release_date, movies.description, movies.rating, movies.movie_path FROM categoryMovie cm INNER JOIN movies ON cm.movie_id = movies.id WHERE cm.category_id = ?;";
     return this.select(query, new Object[]{category.getId()}, rowMapper);
   }
   public List<Movie> getMoviesForMultipleCategories(List<Category> categories) throws SQLException {
@@ -93,7 +93,6 @@ public class MovieDAO extends CrudDAO<Movie>
   }
   public Movie getMovieWithHighestId() throws SQLException {
     String query = "SELECT * FROM movies WHERE id = (SELECT MAX(id) FROM movies)";
-    List<Movie> result = this.select(query, new Object[]{}, rowMapper);
-    return result.isEmpty() ? null : result.getFirst();
+    return this.select(query, new Object[]{}, rowMapper).get(0);
   }
 }

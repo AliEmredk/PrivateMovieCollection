@@ -9,14 +9,20 @@ import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -61,7 +67,7 @@ public class HomePageController extends Page implements Initializable {
         }
         Debounce debouncer = new Debounce(200);
         searchBar.textProperty().addListener((observable,   oldValue, newValue) -> {
-            search(newValue).forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
+            search(newValue).forEach(this::loadMovieNode);
         });
         minRating.textProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null && !newValue.isEmpty()) {
@@ -70,7 +76,7 @@ public class HomePageController extends Page implements Initializable {
             else{
                 minRatingValue = "0";
             }
-            search(searchBar.getText()).forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
+            search(searchBar.getText()).forEach(movie -> loadMovieNode(movie));
         });
         maxRating.textProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null && !newValue.isEmpty()) {
@@ -79,18 +85,18 @@ public class HomePageController extends Page implements Initializable {
             else{
                 maxRatingValue = "10";
             }
-            search(searchBar.getText()).forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
+            search(searchBar.getText()).forEach(movie -> loadMovieNode(movie));
         });
         comboBoxCategories.valueProperty().addListener((observable, oldValue, newValue) -> debouncer.debounce(() -> Platform.runLater(() -> {
             try {
-                searchByCategories(searchBar.getText()).forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
+                searchByCategories(searchBar.getText()).forEach(movie -> loadMovieNode(movie));
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
 
         })));
         dataModel.getMovies().forEach(movie -> {
-            flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie));
+            loadMovieNode(movie);
         });
         comboBoxSorting.valueProperty().addListener((observable, oldValue, newValue) -> {
         });
@@ -123,8 +129,28 @@ public class HomePageController extends Page implements Initializable {
         comboBoxSorting.getItems().addAll(dataModel.getSortingMethods());
         comboBoxSorting.valueProperty().addListener((observable, oldValue, newValue) -> {
             dataModel.setCurrentSortingMethod(newValue.toString());
-            search(searchBar.getText()).forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
+            search(searchBar.getText()).forEach(movie -> loadMovieNode(movie));
 
+        });
+    }
+
+    private void loadMovieNode(Movie movie){
+        VBox node = nodeBuilder.movieToVBox(movie);
+        flowPaneMovies.getChildren().add(node);
+
+        node.setOnMouseClicked(event -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(CategoryController.MOVIE_INFO_VIEW_PATH));
+            try {
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                MovieInfoController movieInfoController = loader.getController();
+                movieInfoController.setMovie(movie);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 }
