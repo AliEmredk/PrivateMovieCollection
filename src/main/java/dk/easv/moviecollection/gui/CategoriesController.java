@@ -83,4 +83,10 @@ public class CategoriesController implements Initializable
     stage.show();
 
   }
+
+  public void goToHomePageView(ActionEvent actionEvent) {
+  }
+
+  public void goToCategoriesView(ActionEvent actionEvent) {
+  }
 }

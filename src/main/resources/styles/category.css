@@ -1,8 +1,17 @@
 .container{
-    -fx-background-image: url("../dk/easv/moviecollection/images/pexels-felixmittermeier-956999.jpg");
+    /*-fx-background-image: url("../dk/easv/moviecollection/images/pexels-felixmittermeier-956999.jpg");*/
+    -fx-background-color: #1f1f1f;
     -fx-background-size: cover;
 }
-
+.menu-button{
+    -fx-border-color: #777;
+    -fx-background-color: transparent;
+    -fx-border-radius: 5;
+    -fx-padding: 7;
+}
+.menu-button:hover{
+    -fx-background-color: #666;
+}
 .image-container{
     -fx-padding: 10;
 }

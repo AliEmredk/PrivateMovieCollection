@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="703.0" prefWidth="834.0" styleClass="container" stylesheets="@../../../../styles/category.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.moviecollection.gui.CategoryController">
+<AnchorPane prefHeight="700.0" prefWidth="834.0" styleClass="container" stylesheets="@../../../../styles/category.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.moviecollection.gui.CategoryController">
    <children>
       <HBox alignment="CENTER_LEFT" layoutX="32.0" layoutY="65.0" prefHeight="150.0" prefWidth="325.0" spacing="20.0">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="categoryImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/defaultCategoryPicture.png" />
                </image>

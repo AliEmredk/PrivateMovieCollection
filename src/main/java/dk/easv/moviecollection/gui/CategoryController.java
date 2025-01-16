@@ -12,10 +12,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -43,6 +46,10 @@ public class CategoryController implements Initializable {
 
     @FXML
     private TextField searchBar;
+
+    @FXML
+    private ImageView categoryImage;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -91,6 +98,11 @@ public class CategoryController implements Initializable {
 
     private void setData() throws SQLException {
         lblCategoryName.setText(category.getName());
+        if(category.getPath() != null && !category.getPath().isEmpty()) {
+            File file = new File(category.getPath());
+            Image image = new Image(file.toURI().toString());
+            categoryImage.setImage(image);
+        }
         dataModel.loadMoviesByCategory(category);
         dataModel.getMovies().forEach(movie -> flowPaneMovies.getChildren().add(nodeBuilder.movieToVBox(movie)));
         dataModel.getMovies().addListener((ListChangeListener<Movie>) change -> {
