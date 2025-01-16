@@ -30,6 +30,7 @@ public class NodeBuilder {
         Circle circle = new Circle(85);
         Image defaultImage = new Image(DEFAULT_CATEGORY_PICTURE);
         if(category.getPath() != null && !category.getPath().isEmpty()) {
+            System.out.println(category.getPath());
             File file = new File(category.getPath());
             defaultImage = new Image(file.toURI().toString());
             System.out.println(defaultImage);
