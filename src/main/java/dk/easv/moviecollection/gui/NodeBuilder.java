@@ -21,9 +21,9 @@ import java.sql.SQLException;
 
 public class NodeBuilder {
 
-    private final static String DEFAULT_CATEGORY_PICTURE = "/images/defaultCategoryPicture.png";
-    private final static String DEFAULT_MOVIE_PICTURE = "/images/defaultMoviePicture.png";
-    private static final String CATEGORY_VIEW_PATH = "/dk/easv/moviecollection/category-view.fxml";
+    private final static String DEFAULT_CATEGORY_PICTURE = "/dk/easv/moviecollection/images/defaultCategoryPicture.png";
+    private final static String DEFAULT_MOVIE_PICTURE = "/dk/easv/moviecollection/images/defaultMoviePicture.png";
+    private static final String CATEGORY_VIEW_PATH = "/dk/easv/moviecollection/views/category-view.fxml";
 
     public VBox categoryToVBox(Category category) {
         VBox container = new VBox();

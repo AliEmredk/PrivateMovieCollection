@@ -18,7 +18,7 @@ public class App extends Application
   private final DataModel dataModel = new DataModel();
   @Override public void start(Stage stage) throws IOException, SQLException {
     dataModel.loadCategories();
-    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("categories-view.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/dk/easv/moviecollection/views/categories-view.fxml"));
     Scene scene = new Scene(fxmlLoader.load());
     stage.setTitle("Private Movie Collection");
     stage.setScene(scene);

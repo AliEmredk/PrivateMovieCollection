@@ -51,7 +51,7 @@ public class CategoriesController implements Initializable
   @FXML protected void showCategoryCreator() throws IOException {
     // Show popup creator
     FXMLLoader loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("/dk/easv/moviecollection/categoryCreator.fxml"));
+    loader.setLocation(getClass().getResource("/dk/easv/moviecollection/views/categoryCreator.fxml"));
 
     if (loader.getLocation() == null) {
       throw new IOException("Fxml file not found");
@@ -68,7 +68,7 @@ public class CategoriesController implements Initializable
 
   public void showMovieCreator(ActionEvent actionEvent) throws IOException {
     FXMLLoader loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("/dk/easv/moviecollection/movieCreator.fxml"));
+    loader.setLocation(getClass().getResource("/dk/easv/moviecollection/views/movieCreator.fxml"));
 
     if (loader.getLocation() == null) {
       throw new IOException("Fxml file not found");

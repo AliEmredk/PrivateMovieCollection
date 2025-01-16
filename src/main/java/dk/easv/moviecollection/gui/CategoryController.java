@@ -26,7 +26,7 @@ public class CategoryController implements Initializable {
     private Category category;
     private final DataModel dataModel = new DataModel();
     private final NodeBuilder nodeBuilder = new NodeBuilder();
-    private static final String CATEGORIES_VIEW_PATH = "/dk/easv/moviecollection/categories-view.fxml";
+    private static final String CATEGORIES_VIEW_PATH = "/dk/easv/moviecollection/views/categories-view.fxml";
     private String minRatingValue = "0";
     private String maxRatingValue = "10";
     @FXML

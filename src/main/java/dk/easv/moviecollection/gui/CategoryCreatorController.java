@@ -20,12 +20,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CategoryCreatorController implements Initializable {
 
-    private final static String IMAGES_DIRECTORY_PATH = "src/main/resources/images";
+    private final static String IMAGES_DIRECTORY_PATH = "src/main/resources/dk/easv/moviecollection/images";
+    private final static String DEFAULT_CATEGORY_PICTURE = "/dk/easv/moviecollection/images/defaultCategoryPicture.png";
     private final CategoryService categoryService = new CategoryService();
     private final DataModel dataModel = new DataModel();
 
@@ -34,12 +34,12 @@ public class CategoryCreatorController implements Initializable {
     @FXML
     private ImageView imgViewEditIcon;
 
-    private String path = "/src/main/resources/images";
+    private String path = "src/main/resources/dk/easv/moviecollection/images";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Set a default image
-        Image defaultImage = new Image(Objects.requireNonNull(getClass().getResource("/images/defaultCategoryPicture.png")).toExternalForm());
+        Image defaultImage = new Image(String.valueOf(getClass().getResource(DEFAULT_CATEGORY_PICTURE)));
         imgViewEditIcon.setImage(defaultImage);
 
         imgViewEditIcon.setOnMouseClicked(event -> {
