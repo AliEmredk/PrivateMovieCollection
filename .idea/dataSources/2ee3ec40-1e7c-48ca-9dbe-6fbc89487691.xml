@@ -19858,7 +19858,7 @@
     <table id="6333" parent="6330" name="categories">
       <CreatedTimestamp>2025-01-07.18:58:32.193</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
-      <ModifiedTimestamp>2025-01-15.13:45:27.047</ModifiedTimestamp>
+      <ModifiedTimestamp>2025-01-16.14:32:25.347</ModifiedTimestamp>
       <ObjectId>613577224</ObjectId>
       <LedgerViewId>0</LedgerViewId>
       <LobDataSpaceId>0</LobDataSpaceId>
@@ -19882,7 +19882,7 @@
     <column id="6336" parent="6333" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>1(35)</SequenceIdentity>
+      <SequenceIdentity>1(57)</SequenceIdentity>
       <StoredType>int|0s</StoredType>
     </column>
     <column id="6337" parent="6333" name="name">
@@ -19891,7 +19891,7 @@
     </column>
     <column id="6338" parent="6333" name="image_path">
       <Position>3</Position>
-      <StoredType>nvarchar(100 char)|0s</StoredType>
+      <StoredType>nvarchar(250 char)|0s</StoredType>
     </column>
     <index id="6339" parent="6333" name="categories_pk">
       <Clustering>1</Clustering>

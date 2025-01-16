@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 public class CategoryCreatorController implements Initializable {
 
     private final static String IMAGES_DIRECTORY_PATH = "src/main/resources/dk/easv/moviecollection/images";
-    private final static String DEFAULT_CATEGORY_PICTURE = "src/main/resources/dk/easv/moviecollection/images/defaultCategoryPicture.png";
+    private final static String DEFAULT_CATEGORY_PICTURE = "/dk/easv/moviecollection/images/defaultCategoryPicture.png";
     private final CategoryService categoryService = new CategoryService();
     private final DataModel dataModel = new DataModel();
 
@@ -91,15 +91,24 @@ public class CategoryCreatorController implements Initializable {
     }
 
     private void setFilePath(String filePath) throws IOException {
-        Path sourcePath = Paths.get(filePath);
+            Path sourcePath = Paths.get(filePath);
 
-        Path destinationDir = Paths.get(IMAGES_DIRECTORY_PATH);
+            Path destinationDir = Paths.get(IMAGES_DIRECTORY_PATH);
 
-        Path destinationPath = destinationDir.resolve(sourcePath.getFileName());
+            // Ensure the destination directory exists
+            if (!Files.exists(destinationDir)) {
+                Files.createDirectories(destinationDir);
+            }
 
-        Files.move(sourcePath, destinationPath);
+            // Create the destination path by appending the filename to the directory
+            Path destinationPath = destinationDir.resolve(sourcePath.getFileName());
 
-        this.path = destinationPath.toString();
+            // Move the file
+            Files.move(sourcePath, destinationPath);
+
+            // Update the path field with the destination path
+            this.path = destinationPath.toString();
+
     }
 
     private void setImage(String path){
