@@ -27,7 +27,7 @@ public class HomePageController extends Page implements Initializable {
 
     private final DataModel dataModel = new DataModel();
     private final NodeBuilder nodeBuilder = new NodeBuilder();
-    private List<Category> selectedCategories = new ArrayList<>();
+    private final List<Category> selectedCategories = new ArrayList<>();
 
     @FXML
     private FlowPane flowPaneMovies;
@@ -90,8 +90,6 @@ public class HomePageController extends Page implements Initializable {
         });
         dataModel.getMovies().forEach(movie -> {
             loadMovieNode(movie);
-        });
-        comboBoxSorting.valueProperty().addListener((observable, oldValue, newValue) -> {
         });
     }
     private ObservableList<Movie> search(String input){

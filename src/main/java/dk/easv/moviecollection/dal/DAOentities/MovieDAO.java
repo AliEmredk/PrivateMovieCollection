@@ -1,26 +1,19 @@
 package dk.easv.moviecollection.dal.DAOentities;
 
 import dk.easv.moviecollection.be.Category;
-import dk.easv.moviecollection.be.CategoryMovie;
 import dk.easv.moviecollection.be.Movie;
 import dk.easv.moviecollection.dal.CrudDAO;
-import dk.easv.moviecollection.dal.HttpClientProvider;
 import dk.easv.moviecollection.dal.mappers.IRowMapper;
 import dk.easv.moviecollection.dal.mappers.MovieRowMapper;
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
 import java.sql.SQLException;
 import java.util.List;
 
 public class MovieDAO extends CrudDAO<Movie>
 {
   private final IRowMapper<Movie> rowMapper;
-  private final HttpClient client;
 
   public MovieDAO(){
-    this.client = HttpClientProvider.getClient();
     this.rowMapper = new MovieRowMapper();
   }
 
@@ -28,6 +21,7 @@ public class MovieDAO extends CrudDAO<Movie>
   {
     return this.select("select * from movies", new Object[]{}, rowMapper);
   }
+
 
   public Movie createNew(Movie movie) throws SQLException{
     return this.insertReturn(
@@ -81,17 +75,6 @@ public class MovieDAO extends CrudDAO<Movie>
     return this.select(query, params, rowMapper);
   }
 
-
-  public Movie fetchMovieByTitle(String title){
-    HttpRequest request = HttpRequest.newBuilder()
-        .uri(URI.create(HttpClientProvider.apiMovieSearchUrl + title + HttpClientProvider.apiMovieAttributes))
-        .header("Authorization", "Bearer "+HttpClientProvider.apiKeyPleaseDoNotSteal)
-        .GET()
-        .build();
-
-    System.out.println(request);
-    return null;
-  }
   public Movie getMovieWithHighestId() throws SQLException {
     String query = "SELECT * FROM movies WHERE id = (SELECT MAX(id) FROM movies)";
     return this.select(query, new Object[]{}, rowMapper).get(0);

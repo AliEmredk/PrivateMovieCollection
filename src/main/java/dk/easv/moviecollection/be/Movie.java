@@ -1,6 +1,5 @@
 package dk.easv.moviecollection.be;
 
-import java.util.Date;
 
 public class Movie {
     private int id;

@@ -1,20 +1,25 @@
 package dk.easv.moviecollection.gui;
 
 import dk.easv.moviecollection.be.Movie;
+import dk.easv.moviecollection.bll.MovieService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.sql.SQLException;
 
-public class MovieInfoController
+public class MovieInfoController extends Page
 {
-  @FXML Label title;
-  @FXML Label director;
-  @FXML Label rating;
-  @FXML MediaView mediaView;
+  @FXML private Label title;
+  @FXML private Label director;
+  @FXML private Label rating;
+  @FXML private MediaView mediaView;
+
+  private final MovieService movieService = new MovieService();
   public static String TEST_MOVIE_FILE = "src/main/resources/dk/easv/moviecollection/movies/test.mp4";
 
   private Movie currentMovie;
@@ -23,7 +28,7 @@ public class MovieInfoController
     currentMovie = movie;
     title.setText("Title: " +currentMovie.getTitle());
     director.setText("Director: " + currentMovie.getDirector());
-    rating.setText("Rating: " + currentMovie.getRating()+"");
+    rating.setText("Rating: " + currentMovie.getRating());
   }
 
   public void play(){
@@ -51,5 +56,12 @@ public class MovieInfoController
 
     // Play the video
     mediaPlayer.play();
+  }
+
+  @FXML
+  private void deleteMovie() throws SQLException {
+    movieService.deleteMovie(currentMovie);
+    Stage stage = (Stage) mediaView.getScene().getWindow();
+    stage.close();
   }
 }

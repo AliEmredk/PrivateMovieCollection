@@ -8,15 +8,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
 
 public class DataModel {
 
     private final CategoryService categoryService = new CategoryService();
     private final MovieService movieService = new MovieService();
-    private static final ObservableList<Category> categories = FXCollections.observableArrayList();;
+    private static final ObservableList<Category> categories = FXCollections.observableArrayList();
     private final ObservableList<Movie> movies = FXCollections.observableArrayList();
     private final ObservableList<Movie> filteredMovies = FXCollections.observableArrayList();
 
@@ -36,7 +34,7 @@ public class DataModel {
         categoryService.loadCategories();
         categories.setAll(categoryService.getCategories());
     }
-    public void loadMoviesByCategory(Category category) throws SQLException {
+    public void loadMoviesByCategory(Category category) {
         movies.setAll(movieService.getAllMoviesForCategory(category));
     }
     public void loadMovies() throws SQLException {
@@ -69,7 +67,7 @@ public class DataModel {
                     filteredMovies.add(movie);
                 }
             }
-            else if(input.contains(movie.getReleaseDate().toString())) {
+            else if(input.contains(movie.getReleaseDate())) {
                 if(movie.getRating() >= minRatingInt && movie.getRating() <= maxRatingInt) {
                     filteredMovies.add(movie);
                 }

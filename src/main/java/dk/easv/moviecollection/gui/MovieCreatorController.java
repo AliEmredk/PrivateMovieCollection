@@ -3,14 +3,11 @@ package dk.easv.moviecollection.gui;
 import dk.easv.moviecollection.be.Category;
 import dk.easv.moviecollection.be.CategoryMovie;
 import dk.easv.moviecollection.be.Movie;
-import dk.easv.moviecollection.bll.CategoryService;
 import dk.easv.moviecollection.bll.MovieService;
 import dk.easv.moviecollection.dal.DAOentities.CategoryDAO;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -21,14 +18,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class MovieCreatorController implements Initializable {
+public class MovieCreatorController extends Creator implements Initializable {
 
     private final MovieService movieService = new MovieService();
     private final CategoryDAO categoryDAO = new CategoryDAO();
@@ -53,7 +47,7 @@ public class MovieCreatorController implements Initializable {
     private TextArea descriptionTxt;
 
 
-    public void selectMovie(ActionEvent event) throws IOException {
+    public void selectMovie() throws IOException {
         Stage stage = (Stage) nameTxt.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select a movie");
@@ -68,9 +62,9 @@ public class MovieCreatorController implements Initializable {
                 ratingSlider.getValue() < 0 || ratingSlider.getValue() > 10) {
             showError("All fields must be filled, and a file must be selected.");
         }
-        setFilePath(selectedFile.getAbsolutePath());
+        moviePath = setFilePath(selectedFile.getAbsolutePath());
     }
-    public void addMovie(ActionEvent actionEvent) throws SQLException {
+    public void addMovie() throws SQLException {
 
         Movie movie = new Movie();
         movie.setTitle(nameTxt.getText());
@@ -117,7 +111,7 @@ public class MovieCreatorController implements Initializable {
     }
 
 
-    public void categoryComboBoxAct(ActionEvent actionEvent) {
+    public void categoryComboBoxAct() {
     }
 
     @Override
@@ -154,26 +148,6 @@ public class MovieCreatorController implements Initializable {
             }
             categoryListView.getItems().add(newValue);
         });
-
-    }
-    private void setFilePath(String filePath) throws IOException {
-        Path sourcePath = Paths.get(filePath);
-
-        Path destinationDir = Paths.get(MOVIES_DIRECTORY_PATH);
-
-        // Ensure the destination directory exists
-        if (!Files.exists(destinationDir)) {
-            Files.createDirectories(destinationDir);
-        }
-
-        // Create the destination path by appending the filename to the directory
-        Path destinationPath = destinationDir.resolve(sourcePath.getFileName());
-
-        // Move the file
-        Files.move(sourcePath, destinationPath);
-
-        // Update the path field with the destination path
-        this.moviePath = destinationPath.toString();
 
     }
 

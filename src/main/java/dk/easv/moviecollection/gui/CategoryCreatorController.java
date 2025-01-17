@@ -16,15 +16,11 @@ import javafx.stage.Window;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class CategoryCreatorController implements Initializable {
+public class CategoryCreatorController extends Creator implements Initializable {
 
-    private final static String IMAGES_DIRECTORY_PATH = "src/main/resources/dk/easv/moviecollection/images";
     private final static String DEFAULT_CATEGORY_PICTURE = "/dk/easv/moviecollection/images/defaultCategoryPicture.png";
     private final CategoryService categoryService = new CategoryService();
     private final DataModel dataModel = new DataModel();
@@ -62,7 +58,7 @@ public class CategoryCreatorController implements Initializable {
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
         File selectedFile = fileChooser.showOpenDialog(stage);
         if (selectedFile != null) {
-            setFilePath(selectedFile.getAbsolutePath());
+            path = setFilePath(selectedFile.getAbsolutePath());
             setImage(path);
         }
 
@@ -76,7 +72,7 @@ public class CategoryCreatorController implements Initializable {
         }
         category.setPath(path);
         categoryService.createNew(category);
-        Window window = (Stage) txtFieldCategoryName.getScene().getWindow();
+        Window window = txtFieldCategoryName.getScene().getWindow();
         Stage stage = (Stage) window;
         dataModel.loadCategories();
         stage.close();
@@ -90,26 +86,6 @@ public class CategoryCreatorController implements Initializable {
         alert.showAndWait();
     }
 
-    private void setFilePath(String filePath) throws IOException {
-            Path sourcePath = Paths.get(filePath);
-
-            Path destinationDir = Paths.get(IMAGES_DIRECTORY_PATH);
-
-            // Ensure the destination directory exists
-            if (!Files.exists(destinationDir)) {
-                Files.createDirectories(destinationDir);
-            }
-
-            // Create the destination path by appending the filename to the directory
-            Path destinationPath = destinationDir.resolve(sourcePath.getFileName());
-
-            // Move the file
-            Files.move(sourcePath, destinationPath);
-
-            // Update the path field with the destination path
-            this.path = destinationPath.toString();
-
-    }
 
     private void setImage(String path){
         File file = new File(path);

@@ -76,21 +76,7 @@ public class CategoryController extends Page implements Initializable{
         });
 
     }
-
-    @FXML
-    private void showCategoriesWindow(){
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(CATEGORIES_VIEW_PATH));
-        try {
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) flowPaneMovies.getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
+    
     public void setCategory(Category category) throws SQLException {
         this.category = category;
         setData();
@@ -143,7 +129,7 @@ public class CategoryController extends Page implements Initializable{
     }
 
     @FXML
-    private void deleteCategory(ActionEvent event) throws IOException {
+    private void deleteCategory(ActionEvent event) {
     dataModel.deleteCategory(category);
     goToCategoriesView(event);
     }

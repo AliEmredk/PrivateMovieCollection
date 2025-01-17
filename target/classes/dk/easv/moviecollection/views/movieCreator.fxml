@@ -12,18 +12,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="351.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.moviecollection.gui.MovieCreatorController">
+<AnchorPane prefHeight="351.0" prefWidth="660.0" styleClass="container" stylesheets="@../../../../styles/category.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.moviecollection.gui.MovieCreatorController">
    <children>
       <VBox layoutX="-1.0" layoutY="-2.0" prefHeight="351.0" prefWidth="454.0">
          <children>
             <HBox prefHeight="62.0" prefWidth="454.0">
                <children>
-                  <Label text="Name : ">
+                  <Label text="Name : " textFill="WHITE">
                      <HBox.margin>
                         <Insets left="40.0" top="20.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="nameTxt">
+                  <TextField fx:id="nameTxt" style="-fx-background-color: rgba(255,255,255,.5);">
                      <HBox.margin>
                         <Insets left="52.0" top="17.0" />
                      </HBox.margin>
@@ -35,12 +35,12 @@
                   <Insets />
                </VBox.margin>
                <children>
-                  <Label text="Release Date :">
+                  <Label text="Release Date :" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="40.0" top="20.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="releaseDateTxt">
+                  <TextField fx:id="releaseDateTxt" style="-fx-background-color: rgba(255,255,255,.5);">
                      <HBox.margin>
                         <Insets left="21.0" top="17.0" />
                      </HBox.margin>
@@ -49,12 +49,12 @@
             </HBox>
             <HBox prefHeight="64.0" prefWidth="454.0">
                <children>
-                  <Label text="Director :">
+                  <Label text="Director :" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="40.0" top="20.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="directorTxt">
+                  <TextField fx:id="directorTxt" style="-fx-background-color: rgba(255,255,255,.5);">
                      <HBox.margin>
                         <Insets left="47.0" top="17.0" />
                      </HBox.margin>
@@ -63,12 +63,12 @@
             </HBox>
             <HBox prefHeight="60.0" prefWidth="454.0">
                <children>
-                  <Label text="Description :">
+                  <Label text="Description :" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="40.0" top="20.0" />
                      </HBox.margin>
                   </Label>
-                  <TextArea fx:id="descriptionTxt" prefHeight="9.0" prefWidth="200.0">
+                  <TextArea fx:id="descriptionTxt" prefHeight="9.0" prefWidth="200.0" style="-fx-control-inner-background: transparent; -fx-background-color: transparent; -fx-background: rgba(255,255,255,.5); -fx-background-radius: 10;">
                      <HBox.margin>
                         <Insets left="12.0" />
                      </HBox.margin>
@@ -77,7 +77,7 @@
             </HBox>
             <HBox prefHeight="62.0" prefWidth="454.0">
                <children>
-                  <Label text="Rating :">
+                  <Label text="Rating :" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="40.0" top="20.0" />
                      </HBox.margin>
@@ -92,9 +92,9 @@
             <HBox prefHeight="67.0" prefWidth="454.0" />
          </children>
       </VBox>
-      <ListView fx:id="categoryListView" layoutX="410.0" layoutY="27.0" prefHeight="177.0" prefWidth="224.0" />
+      <ListView fx:id="categoryListView" layoutX="410.0" layoutY="27.0" prefHeight="177.0" prefWidth="233.0" style="-fx-background-color: rgba(255,255,255,.5);" />
       <Button alignment="CENTER" layoutX="559.0" layoutY="305.0" mnemonicParsing="false" onAction="#addMovie" text="Submit" />
-      <ComboBox fx:id="categoryComboBox" layoutX="410.0" layoutY="215.0" onAction="#categoryComboBoxAct" prefWidth="150.0" />
+      <ComboBox fx:id="categoryComboBox" layoutX="410.0" layoutY="215.0" onAction="#categoryComboBoxAct" prefWidth="150.0" style="-fx-background-color: rgba(255,255,255,.5);" />
       <Button layoutX="485.0" layoutY="305.0" mnemonicParsing="false" onAction="#selectMovie" text="Add file" />
    </children>
 </AnchorPane>
