@@ -5,6 +5,7 @@ import dk.easv.moviecollection.be.Movie;
 import dk.easv.moviecollection.dal.CrudDAO;
 import dk.easv.moviecollection.dal.mappers.IRowMapper;
 import dk.easv.moviecollection.dal.mappers.MovieRowMapper;
+import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -78,5 +79,16 @@ public class MovieDAO extends CrudDAO<Movie>
   public Movie getMovieWithHighestId() throws SQLException {
     String query = "SELECT * FROM movies WHERE id = (SELECT MAX(id) FROM movies)";
     return this.select(query, new Object[]{}, rowMapper).get(0);
+  }
+
+  public void updateRating(Movie currentMovie, String textField)
+      throws SQLException
+  {
+    this.update("Update movies set rating = ? where id = ?", new Object[]{textField, currentMovie.getId()});
+  }
+
+  public Movie getMovieForId(int id) throws SQLException
+  {
+    return this.select("select * from movies where id =?", new Object[]{id}, rowMapper).get(0);
   }
 }

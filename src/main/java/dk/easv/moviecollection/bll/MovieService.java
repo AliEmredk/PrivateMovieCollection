@@ -5,6 +5,7 @@ import dk.easv.moviecollection.be.CategoryMovie;
 import dk.easv.moviecollection.be.Movie;
 import dk.easv.moviecollection.dal.DAOentities.CategoryMovieDAO;
 import dk.easv.moviecollection.dal.DAOentities.MovieDAO;
+import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -54,5 +55,24 @@ public class MovieService
   }
   public void deleteMovie(Movie movie) throws SQLException {
     movieDAO.delete(movie);
+  }
+
+  public void updateRating(Movie currentMovie, String textField)
+  {
+    try{
+      movieDAO.updateRating(currentMovie, textField);
+    }catch (Exception e){
+      e.printStackTrace();
+    }
+  }
+
+  public Movie getMovieForID(int id)
+  {
+    try{
+      return movieDAO.getMovieForId(id);
+    }catch (Exception e){
+      e.printStackTrace();
+    }
+    return new Movie();
   }
 }

@@ -3,7 +3,11 @@ package dk.easv.moviecollection.gui;
 import dk.easv.moviecollection.be.Movie;
 import dk.easv.moviecollection.bll.MovieService;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -63,5 +67,37 @@ public class MovieInfoController extends Page
     movieService.deleteMovie(currentMovie);
     Stage stage = (Stage) mediaView.getScene().getWindow();
     stage.close();
+  }
+
+  @FXML private void openChangeRating(){
+    // Create a new Stage (popup window)
+    Stage popupStage = new Stage();
+
+    // Set title for the popup
+    popupStage.setTitle("Popup Window");
+
+    // Create a TextField
+    TextField textField = new TextField();
+    textField.setPromptText("Enter text here");
+
+    // Create a Button to close the popup
+    Button closeButton = new Button("Change");
+    closeButton.setOnAction(event -> {
+      movieService.updateRating(currentMovie, textField.getText());
+      setMovie(movieService.getMovieForID(currentMovie.getId()));
+      popupStage.close();
+    });
+
+    // Add the TextField and Button to a VBox layout
+    VBox layout = new VBox(10); // 10 is the spacing between elements
+    layout.getChildren().addAll(textField, closeButton);
+    layout.setStyle("-fx-padding: 10; -fx-alignment: center;");
+
+    // Set up the Scene
+    Scene scene = new Scene(layout, 300, 200); // Width: 300, Height: 200
+    popupStage.setScene(scene);
+
+    // Show the popup
+    popupStage.showAndWait();
   }
 }
