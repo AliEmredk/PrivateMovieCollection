@@ -2,23 +2,17 @@ package dk.easv.moviecollection.gui;
 
 import dk.easv.moviecollection.be.Category;
 import dk.easv.moviecollection.be.Movie;
-import dk.easv.moviecollection.bll.MovieService;
 import dk.easv.moviecollection.gui.models.DataModel;
-import dk.easv.moviecollection.utils.Debounce;
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -65,7 +59,6 @@ public class HomePageController extends Page implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        Debounce debouncer = new Debounce(200);
         searchBar.textProperty().addListener((observable,   oldValue, newValue) -> {
             search(newValue).forEach(this::loadMovieNode);
         });
@@ -87,14 +80,14 @@ public class HomePageController extends Page implements Initializable {
             }
             search(searchBar.getText()).forEach(movie -> loadMovieNode(movie));
         });
-        comboBoxCategories.valueProperty().addListener((observable, oldValue, newValue) -> debouncer.debounce(() -> Platform.runLater(() -> {
+        comboBoxCategories.valueProperty().addListener((observable, oldValue, newValue)-> {
             try {
                 searchByCategories(searchBar.getText()).forEach(movie -> loadMovieNode(movie));
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
 
-        })));
+        });
         dataModel.getMovies().forEach(movie -> {
             loadMovieNode(movie);
         });
