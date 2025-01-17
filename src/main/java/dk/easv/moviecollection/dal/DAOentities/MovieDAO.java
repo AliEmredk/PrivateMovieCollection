@@ -56,7 +56,7 @@ public class MovieDAO extends CrudDAO<Movie>
   public List<Movie> getMoviesForMultipleCategories(List<Category> categories) throws SQLException {
     // Build the SQL query dynamically
     StringBuilder queryBuilder = new StringBuilder(
-            "SELECT m.id, m.title, m.director, m.release_date, m.description, m.rating " +
+            "SELECT m.id, m.title, m.director, m.release_date, m.description, m.rating, m.movie_path " +
                     "FROM categoryMovie cm " +
                     "INNER JOIN movies m ON cm.movie_id = m.id " +
                     "WHERE cm.category_id IN ("
@@ -65,7 +65,7 @@ public class MovieDAO extends CrudDAO<Movie>
     // Add placeholders for the category IDs
     queryBuilder.append("?,".repeat(categories.size()));
     queryBuilder.setLength(queryBuilder.length() - 1); // Remove trailing comma
-    queryBuilder.append(") GROUP BY m.id, m.title, m.director, m.release_date, m.description, m.rating " +
+    queryBuilder.append(") GROUP BY m.id, m.title, m.director, m.release_date, m.description, m.rating, m.movie_path " +
             "HAVING COUNT(DISTINCT cm.category_id) = ?;");
 
     String query = queryBuilder.toString();
@@ -80,6 +80,7 @@ public class MovieDAO extends CrudDAO<Movie>
     // Execute query and map results
     return this.select(query, params, rowMapper);
   }
+
 
   public Movie fetchMovieByTitle(String title){
     HttpRequest request = HttpRequest.newBuilder()
