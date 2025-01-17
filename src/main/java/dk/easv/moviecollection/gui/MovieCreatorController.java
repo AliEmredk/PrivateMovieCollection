@@ -96,6 +96,10 @@ public class MovieCreatorController extends Creator implements Initializable {
             showError("Please select a category.");
             return;
         }
+        if(moviePath == null || moviePath.isEmpty()){
+            showError("Please select a movie.");
+            return;
+        }
 
         Stage stage = (Stage) nameTxt.getScene().getWindow();
         stage.close();
